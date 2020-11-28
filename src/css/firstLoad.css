@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  left: calc(50vw - 150px);
+  margin-top: calc(50vh - 200px);
+}
+
+.logo {
+  width: 150px;
+  margin-left: 65px;
+  margin-bottom: 45px;
+}
+
+.logo path:last-child {
+  stroke-dasharray: 1650;
+  stroke-dashoffset: 1650;
+  transition: stroke-dashoffset 1.5s linear, fill .5s linear;
+}
+
+.logo path {
+  stroke-dasharray: 3700;
+  stroke-dashoffset: 3700;
+  transition: stroke-dashoffset 1.5s linear, fill .5s linear;
+}
+
+.logo circle {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 550;
+  transition: stroke-dashoffset 1.5s linear, fill .5s linear;
+}
+
+.logo-animate path {
+  stroke-dashoffset: 0;
+}
+
+.logo-animate circle {
+  stroke-dashoffset: 0;
+}
+
+.logo-animate path:last-child {
+  stroke-dashoffset: 0;
+}
+
+.name {
+  width: 300px;
+  transition: margin 1s linear;
+}
+
+.name path {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  transition: stroke-dashoffset 1.5s linear, fill .5s linear;
+}
+
+.name-animate path {
+  stroke-dashoffset: 0;
+}
+
+.name-color path {
+  fill: #73c9c3;
+}
+
+.logo-color circle {
+  fill: #73c9c3;
+}
+
+.logo-color path {
+  fill: #73c9c3;
+}
+
+.logo-color path:last-child {
+  fill: #73c9c3;
+}
+
+.slide-up {
+  margin-top: -20px;
+}

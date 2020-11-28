@@ -1,0 +1,86 @@
+.other-func {
+  width: 100%;
+  height: calc(100vh - 150px);
+}
+
+.friends-tab, .groups-tab, .recent-chat, .noti-tab, .friend-request-tab {
+  grid-area: mot;
+  height: calc(100vh - 150px);
+  width: 100%;
+  background-color: white;
+  max-height: calc(100vh - 145px);
+  overflow-x: hidden;
+  border-top: 1px solid rgba(230, 230, 230, 0.6);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
+  position: relative;
+}
+
+.create-group {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  top: 25px;
+  right: 50px;
+  font-size: 30px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.create-group-tab, .setting-tab, .group-info-tab {
+  position: absolute;
+  width: 80%;
+  height: 80vh;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid rgba(230, 230, 230, 1);
+  margin-left: 10%;
+  display: grid;
+  grid-template-columns: 150px calc(100% - 150px);
+  grid-template-areas: 'mot hai';
+}
+
+.create-group:hover, .friend-request:hover {
+  transform: scale(1.2, 1.3);
+  color: rgba(43, 213, 255, 1);
+}
+
+.friend-request {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  top: 30px;
+  right: 50px;
+  font-size: 18px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.welcome-box {
+  grid-area: hai;
+  width: 100%;
+  height: calc(100vh - 150px);
+  text-align: center;
+  padding-top: 15vh;
+}
+
+.welcome-box div:first-child {
+  font-size: 40px;
+}
+
+.welcome-box div:nth-child(2) {
+  font-size: 30px;
+}
+
+.welcome-box div {
+  margin-top: 4vh;
+  font-size: 20px;
+}
+
+.hide-d {
+  display: none;
+}
+
+.option-active {
+  color: black;
+  background-image: linear-gradient(to top, rgba(43, 213, 255, 0.2), transparent);
+}

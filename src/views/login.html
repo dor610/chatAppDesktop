@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chatApp</title>
+  <link href="../css/css/all.css" rel="stylesheet" type="text/css">
+  <link href="../css/login.css" type="text/css" rel="stylesheet">
+  <link href="../css/welcome.css" rel="stylesheet" type="text/css">
+  <link href="../css/windowControl.css" rel="stylesheet" type="text/css">
+  <link href="../css/backgroud.css" rel="stylesheet" type="text/css">
+  <link href="../css/loading.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="title-bar" class="title-bar">
+    <div id="title-bar-logo" class="title-bar-logo">
+      <img src="../statics/img/title-logo.png" width="22px">
+    </div>
+    <div id="title-bar-app-name" class="title-bar-app-name">chatApp</div>
+    <div id="title-bar-controller" class="title-bar-controller">
+      <i id="minimize" class="fas fa-minus"></i>
+      <i id="expand" class="fas fa-expand"></i>
+      <i id="close" class="fas fa-times"></i>
+    </div>
+  </div>
+  <div id="type" class="hide-o"></div>
+
+  <div id="bg">
+    <div id="bg-1" class="bg-1"></div>
+    <div id="bg-2" class="bg-2"></div>
+  </div>
+
+
+  <div id="loading-box" class="hide-o">
+    <div id="loading" class="">
+      <div id="loading-icon"></div>
+      <div></div>
+    </div>
+  </div>
+
+  <div id="noti-container" class="hide-o">
+    <div id="noti-box" class="">
+      <div id="noti-content"></div>
+    </div>
+  </div>
+
+  <div id="welcome" class="welcome hide-opacity">
+    <div id="welcome-box">
+      <span>Welcome to chatApp</span>
+      <div id="logo">
+        <img class="logo-img" src="../statics/img/logo-name.png" alt="Flowers">
+        <img class="logo-img-small" src="../statics/img/logo.png" alt="Flower">
+      </div>
+      <div id="welcome-content">
+        <div>
+          <button id="welcome-login-btn" class="welcome-btn">Login</button>
+        </div>
+        <div>
+          <button id="welcome-signup-btn" class="welcome-btn">Create Account</button>
+        </div>
+      </div>
+
+    </div>
+    <footer>
+      <div id="about">About</div>
+      <div>chatApp is made by Khanh, Thanh và Khang for study purposes only</div>
+    </footer>
+  </div>
+
+  <div id="main-content" class="main-content hide-o">
+    <div id="open-signup-form">
+      <span id="have-account">Don't have an account?</span>
+      <button id="open-signup-btn" class="open-signup-btn">Create Account</button>
+    </div>
+    <div id="logo">
+      <img class="logo-img" src="../statics/img/logo-name.png" alt="Flowers">
+      <img class="logo-img-small" src="../statics/img/logo.png" alt="Flower">
+    </div>
+    <div id="signup" class="signup hide-o">
+      <form id="signup-form" name="signup-form" class="signup-form" method="post">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <div>
+          <input type="text" name="userName" placeholder="Username" required>
+          <select name="gender" id="gender">
+            <option value="0">Gender</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+          </select>
+        </div>
+        <input type="number" name="age" min="5" max="50" placeholder="Your age">
+        <button id="login-btn" type="submit" name="button" class="button-light">SIGN UP</button>
+      </form>
+    </div>
+    <div id="login" class="login  ">
+      <form id="login-form" name="login-form" class="login-form" method="post">
+        <label for="uname"></label>
+        <input type="text" id="uname" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button id="login-btn" type="submit" name="button" class="button-light">
+          LOG IN
+        </button>
+      </form>
+    </div>
+    <footer>
+      <div id="about">About</div>
+      <div>chatApp is made by Khanh, Thanh và Khang for study purposes only</div>
+    </footer>
+  </div>
+
+  <a id="main" href="main.html"></a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../js/windowControl.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+
+</html>

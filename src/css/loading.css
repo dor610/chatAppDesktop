@@ -1,0 +1,70 @@
+@keyframes background-changing {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 300%;
+  }
+}
+
+#loading-box {
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  transition: opacity 2s;
+}
+
+#loading {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  animation: rolling 3s ease infinite;
+  opacity: 1;
+  margin-top: calc(50vh - 150px)
+}
+
+#loading div {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+}
+
+#loading div:first-child {
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+  border-radius: 70px;
+  opacity: 1;
+  animation: background-changing linear 8s infinite;
+}
+
+#loading div:last-child {
+  background-color: white;
+  border-radius: 70px;
+  z-index: 1;
+  animation: slide 6s linear infinite alternate;
+}
+
+@keyframes rolling {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide {
+  0%, 100% {
+    left: -210px;
+  }
+
+  50% {
+    left: 210px;
+  }
+}

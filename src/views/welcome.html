@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chatApp</title>
+  <link href="../css/windowControl.css" rel="stylesheet" type="text/css">
+  <link href="../css/welcome.css" rel="stylesheet" type="text/css">
+  <link href="../css/css/all.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="title-bar" class="title-bar">
+    <div id="title-bar-logo" class="title-bar-logo">
+      <img src="../statics/img/title-logo.png" width="22px">
+    </div>
+    <div id="title-bar-app-name" class="title-bar-app-name">chatApp</div>
+    <div id="title-bar-controller" class="title-bar-controller">
+      <i id="minimize" class="fas fa-minus"></i>
+      <i id="expand" class="fas fa-expand"></i>
+      <i id="close" class="fas fa-times"></i>
+    </div>
+  </div>
+  <div id="greeting" class="greeting">
+    Welcome to chatApp
+  </div>
+  <div id="nav" class="nav hide-o">
+    <p> Don't have an account? </p>
+    <button id="nav-btn" class="button">Signup</button>
+  </div>
+  <div id="logo" class="logo">
+    <img class="small-logo" src="../statics/img/logo.png">
+    <img class="big-logo" src="../statics/img/logo-name.png">
+  </div>
+
+  <div id="main-content" class="main-content">
+    <div id="welcome" class="welcome">
+      <button id="open-login-form" class="open-login-form">Login</button>
+      <button id="open-signup-form" class="open-signup-form">Signup</button>
+    </div>
+    <div id="login-form-container" class="login-form-container">
+      <form id="login-form" class="login-form" name="login-form">
+        <input name="email" class="input" type="text" placeholder="Email">
+        <input name="password" class="input" type="password" placeholder="Password">
+        <button name="login-btn" class="button" type="submit">Login</button>
+      </form>
+    </div>
+    <div id="signup-form-container" class="signup-form-container">
+      <form id="signup-form" class="signup-form" name="signup-form">
+        <input name="newEmail" class="input" type="text" placeholder="Email">
+        <div class="hihi">
+          <input name="userName" class="input input-small" type="text" placeholder="User Name">
+          <select name="gender" class="input input-small" id="gender">
+            <option value="0">Gender</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+          </select>
+        </div>
+        <input name="newPassword" class="input" type="password" placeholder="Password">
+        <input name="age" class="input" type="number" min="10" placeholder="Your Age">
+        <button type="submit" class="button" name="signup-btn">Signup</button>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <p>About</p>
+    <p> chatApp is made by Khanh, Thanh and Khang for study puposes only
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../js/windowControl.js"></script>
+  <script src="../js/welcome.js"></script>
+</body>
+
+</html>

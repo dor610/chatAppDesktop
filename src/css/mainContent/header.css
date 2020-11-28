@@ -1,0 +1,75 @@
+.header {
+  height: 80px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 300px calc(100% - 300px);
+  grid-template-areas: 'mot hai';
+  -webkit-user-select: none;
+}
+
+.user-info {
+  grid-area: mot;
+  /*border: 1px solid lightgray;*/
+  width: 100%;
+  height: calc(100% - 5px);
+  background-color: white;
+  display: flex;
+}
+
+.user-avatar-letter {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  background-image: linear-gradient(to right, #29D5FF, #29FFDF);
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.user-name {
+  height: 60px;
+  width: auto;
+  line-height: 60px;
+  margin-top: 5px;
+  margin-left: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.user-name:hover {
+  color: black;
+}
+
+.recipient-info {
+  grid-area: hai;
+  height: calc(100% - 5px);
+  width: calc(100% - 5px);
+  /*  border: 1px solid lightgray;*/
+  background-color: white;
+  display: flex;
+  border-left: 1px solid rgba(230, 230, 230, 0.6);
+}
+
+#recipient-avatar-letter div {
+  z-index: 1;
+}
+
+@media only screen and (max-width: 700px) {
+  .header {
+    grid-template-areas: 'hai hai';
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .recipient-info {
+    margin-left: 0;
+    width: 100%;
+  }
+}

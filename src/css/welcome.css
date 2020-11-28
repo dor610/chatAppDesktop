@@ -1,0 +1,139 @@
+.welcome {
+  transition: opacity 5s;
+}
+
+#welcome-box {
+  text-align: center;
+}
+
+#welcome-box span {
+  display: block;
+  margin-bottom: 50px;
+  font-size: 5vw;
+  letter-spacing: 10px;
+}
+
+#welcome-content {
+  margin-top: 2vh;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#welcome-content div {
+  height: 34vh;
+  width: 100%;
+  transition: 0.5s;
+}
+
+.welcome-btn {
+  border-radius: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 200px;
+  height: 100px;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 3px;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+  cursor: pointer;
+}
+
+.welcome-btn:hover {
+  animation: background-changing 10s linear infinite;
+}
+
+.welcome-btn:hover::before {
+  filter: blur(15px);
+  animation: background-changing 15s linear infinite;
+  opacity: 0.7;
+}
+
+.welcome-btn::before {
+  content: "";
+  width: 220px;
+  border-radius: 110px;
+  top: -10px;
+  left: -10px;
+  height: 120px;
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+@keyframes background-changing {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 300%;
+  }
+}
+
+.show-opacity {
+  opacity: 1;
+}
+
+.hide-opacity {
+  opacity: 0;
+}
+
+@media only screen and (min-width: 1300px) {
+  #welcome {
+    width: 100vw;
+    min-height: 100vh;
+    padding-top: 10vh;
+  }
+
+  #welcome-content {
+    position: relative;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #welcome {
+    padding-top: 5vh;
+  }
+
+  #welcome span {
+    font-size: 50px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #welcome span {
+    font-size: 40px;
+  }
+
+  #welcome-content {
+    display: block;
+    padding-top: ;
+    padding-bottom: 50px;
+  }
+
+  #welcome-content div {
+    height: 30px;
+  }
+
+  .welcome-btn {
+    height: 50px;
+  }
+
+  .welcome-btn::before {
+    height: 70px;
+  }
+}

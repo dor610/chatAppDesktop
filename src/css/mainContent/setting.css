@@ -1,0 +1,197 @@
+.setting-tab {
+  position: absolute;
+  width: 80%;
+  height: 80vh;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid rgba(230, 230, 230, 1);
+  margin-left: 10%;
+  display: grid;
+  grid-template-columns: 150px calc(100% - 150px);
+  grid-template-areas: 'mot hai';
+}
+
+.setting-content {
+  grid-area: hai;
+}
+
+.setting-close {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  right: 15px;
+  top: 5px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid transparent;
+  z-index: 1;
+  background-color: transparent;
+  color: #8C8B8B;
+  cursor: pointer;
+}
+
+.setting-close:hover {
+  border: 1px solid rgba(230, 230, 230, 1);
+  box-shadow: 0 0 2px #727272 inset;
+}
+
+.setting-option {
+  grid-area: mot;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+  padding-top: 30px;
+  border-right: 1px solid rgba(230, 230, 230, 1);
+}
+
+.setting-option p {
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+  font-size: 25px;
+}
+
+.setting-option div {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  transition: 0.2s;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.setting-option div:hover {
+  color: rgba(43, 213, 255, 1);
+}
+
+.user-profile-content p {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.user-profile-content div div:first-child {
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  float: left;
+  width: 20%;
+  margin-left: 5%;
+  margin-top: 20px;
+  clear: both;
+}
+
+.user-profile-content div div:last-child {
+  position: relative;
+  float: right;
+  width: 50%;
+  margin-right: 4%;
+  margin-top: 20px;
+}
+
+.user-account-content, .about-content, .help-content, .edit-profile-content {
+  width: 100%;
+  height: 80vh;
+}
+
+.user-account-content div {
+  display: block;
+  position: relative;
+  color: white;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  top: calc(40vh - 25px);
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.about-content div {
+  padding-top: 20vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+  font-size: 20px;
+  height: 100px;
+  line-height: 30px;
+}
+
+.help-content div {
+  padding-top: 20vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.edit-profile-content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
+  padding-left: 10%;
+  position: relative;
+}
+
+.edit-profile-content label {
+  display: block;
+}
+
+.edit-profile-content input {
+  display: block;
+  height: 30px;
+  width: 80%;
+  margin: 10px;
+}
+
+.edit-profile-content button {
+  outline: none;
+  border: none;
+  color: white;
+  width: 150px;
+  height: 30px;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-top: 10px;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+}
+
+.logout {
+  position: relative;
+  float: left;
+  clear: both;
+  left: 5%;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  width: 100px;
+  height: 30px;
+  color: white;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.active-option {
+  color: black;
+}
+
+.hide-d {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .setting-tab {
+    width: 100%;
+    margin-left: 0;
+  }
+}

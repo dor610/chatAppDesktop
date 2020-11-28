@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  transition: 0.5s;
+}
+
+.redirect {
+  padding-top: 40px;
+  line-height: 50px;
+  display: flex;
+  font-size: 30px;
+}
+
+.button {
+  display: block;
+  text-decoration: none;
+  width: 120px;
+  height: 50px;
+  color: white;
+  font-size: 25px;
+  line-height: 50px;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 500%;
+  animation: background-changing 40s linear infinite;
+}
+
+@keyframes background-changing {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 500%;
+  }
+}
+
+.container {
+  width: 300px;
+  position: relative;
+  top: calc(50vh - 250px);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.error {
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  color: #607C78;
+  font-size: 70px;
+  font-weight: bold;
+  transition: opacity 3s;
+}
+
+.img {
+  width: 300px;
+  height: 300px;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+  border-radius: 150px;
+  z-index: -2;
+}
+
+.img::after {
+  content: '';
+  background-color: white;
+  width: 302px;
+  height: 302px;
+  left: -1px;
+  top: -1px;
+  position: absolute;
+  border-radius: 150px;
+  transition: top 0.75s ease-in;
+}
+
+.slide::after {
+  top: 13px;
+}
+
+.hide-o {
+  opacity: 0;
+}
+
+.hide-d {
+  display: none;
+}
+
+.mes {
+  color: #607C78;
+  width: 500px;
+  top: calc(50vh - 70px);
+  position: absolute;
+  left: calc(50vw - 250px);
+  text-align: center;
+  font-size: 30px;
+  transition: opacity 3s;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .img::after {
+    height: 202px;
+    width: 202px;
+  }
+
+  .container {
+    top: 150px;
+    width: 200px;
+  }
+
+  .error {
+    font-size: 40px;
+  }
+
+  .mes {
+    top: 270px;
+    font-size: 22px;
+    width: 100vw;
+    left: 0;
+  }
+
+  .redirect {
+    display: block;
+    padding-top: 20px;
+    font-size: 18px;
+  }
+
+  .redirect a {
+    height: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chatApp</title>
+  <link href="../css/css/all.css" rel="stylesheet" type="text/css">
+  <link href="../css/windowControl.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/main.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/message.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/header.css" rel="stylesheet" type="text/css">
+  <link href="../css/loading.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/other.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/setting.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/group.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/friend.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/notification.css" rel="stylesheet" type="text/css">
+  <link href="../css/mainContent/message.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <div id="title-bar" class="title-bar">
+    <div id="title-bar-controller" class="title-bar-controller">
+      <i id="minimize" class="fas fa-minus"></i>
+      <i id="expand" class="fas fa-expand"></i>
+      <i id="close" class="fas fa-times"></i>
+    </div>
+  </div>
+
+  <div id="notification-box" class="notification-box hide-top">
+    <div id="notification-message" class="notification-message"></div>
+  </div>
+
+  <div id="confirm-box" class="confirm-box hide-top">
+    <div id="confirm-message" class="confirm-message">asdas asdas asdas asdasd asdasd asdasd asdas sdasd asdsddsadas adasd</div>
+    <div id="confirm-btn" class="confirm-btn">
+      <button id="confirmed-btn" class="confirmed-btn">Yes</button>
+      <button id="cancel-confirm-btn" class="cancel-confirm-btn">No</button>
+    </div>
+  </div>
+
+  <div id="loading-box" class="hide-d">
+    <div id="loading" class="">
+      <div id="loading-icon"></div>
+      <div></div>
+    </div>
+  </div>
+
+
+  <div id="header" class="header">
+    <div id="user-info" class="user-info">
+      <div id="user-avatar-letter" class="user-avatar-letter"></div>
+      <div id="user-avatar" class="user-avatar"></div>
+      <div id="user-name" class="user-name"></div>
+    </div>
+    <div id="recipient-info" class="recipient-info hide-o">
+      <div id="recipient-avatar-letter" class="user-avatar-letter">T</div>
+      <div id="recipient-avatar" class="user-avatar"></div>
+      <div id="recipient-name" class="user-name">Tester</div>
+    </div>
+  </div>
+
+
+  <div id="container" class="container">
+
+    <div id="other-func" class="other-func">
+
+      <div id="friends-tab" class="friends-tab hide-d">
+        <div class="title">Friends</div>
+        <div id="friend-request-btn" class="friend-request" title="Friend requests"><i class="fas fa-user-plus"></i></div>
+        <div id="friends-content" class="friends-content contact">
+        </div>
+      </div>
+
+      <div id="friend-request-tab" class="friend-request-tab hide-d">
+        <div class="title">Friend requests</div>
+        <div id="back-friend-request" class="friend-request" title="Back"><i class="fas fa-arrow-left"></i></div>
+        <div id="friend-request-content" class="friends-request-content contact">
+          <div>
+            <div>H</div>
+            <p>Hoang Khang</p>
+          </div>
+          <span>
+            <span>Accept</span>
+            <span>Remove </span>
+          </span>
+        </div>
+      </div>
+
+      <div id="groups-tab" class="groups-tab hide-d">
+        <div class="title">Groups</div>
+        <div id="create-group" class="create-group" title="Create new group">+</div>
+        <div id="groups-content" class="groups-content contact">
+
+        </div>
+      </div>
+
+      <div id="noti-tab" class="noti-tab hide-d">
+        <div class="title">Notifications</div>
+        <div id="noti-content" class="notis-content contact">
+          <div>
+            <p>Testing Notification</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="recent-chat" class="recent-chat">
+        <div class="title">Recent chats</div>
+        <div id="recent-chat-content" class="recent-chat-content contact">
+          <div>
+            <div>G</div>
+            <p>Group Tester</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div id="welcome-box" class="welcome-box hide-d">
+      <div>Welcome to chatApp</div>
+      <div>Some tips for you to get started:</div>
+      <div>You can find your friends in "Friends" tab.</div>
+      <div>Your can find your groups in "Groups" tab.</div>
+      <div>Use "Search" to find your friends/groups by email/groupId.</div>
+    </div>
+
+
+    <div id="chat-area" class="chat-area">
+      <div id="message-view-container" class="message-view-container">
+        <!--  <div class="message-view">
+          <div class="message-received">
+            <div>mot</div>
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+          <div class="message-sent">
+            <div>hai</div>
+            <div>10:24AM, 20/11/2020</div>
+          </div>
+
+          <div class="message-received">
+            <div>ba</div>
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+          <div class="message-sent">
+            <div>bon</div>
+            <div>10:24AM, 20/11/2020</div>
+          </div>
+
+          <div class="message-received">
+            <div>nam</div>
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+          <div class="message-sent">
+            <div>sau</div>
+            <div>10:24AM, 20/11/2020</div>
+          </div>
+          <div class="message-sent">
+            <div>sau</div>
+            <div>10:24AM, 20/11/2020</div>
+          </div>
+          <div class="message-sent">
+            <div>sau</div>
+            <div>10:24AM, 20/11/2020</div>
+          </div>
+          <div class="message-received">
+            <div>ba</div>
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+          <div class="message-received">
+            <div>ba</div>
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+        </div>-->
+      </div>
+      <div id="message-func" class="message-func">
+        <i id="send-image" class="far fa-file-image" title="Image"></i>
+        <i id="send-emoji" class="far fa-file-alt" title="Emoji"></i>
+        <i id="send-file" class="far fa-grin" title="File"></i>
+      </div>
+      <div id="message-send" class="message-send">
+        <form id="message-form">
+          <input id="message-content" type="text" class="message-content" placeholder="Type a message">
+          <button id="message-send-btn" type="submit" class="message-send-btn"><i class="far fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+
+
+    <div id="setting-tab" class="setting-tab hide-d">
+      <div id="setting-option" class="setting-option">
+        <p>Setting</p>
+        <div id="user-profile" class="user-profile active-option">User profile</div>
+        <div id="edit-profile" class="edit-profile">Edit profile</div>
+        <div id="user-account" class="user-account">Account</div>
+        <div id="about" class="about">About</div>
+        <div id="help" class="help">Help</div>
+      </div>
+      <div id="setting-content" class="setting-content">
+        <div id="setting-close" class="setting-close"><i class="fas fa-times"></i></div>
+        <div id="user-profile-content" class="user-profile-content"></div>
+        <div id="user-account-content" class="user-account-content hide-d">
+          <div id="delete-accout">Delete account</div>
+        </div>
+        <div id="about-content" class="about-content hide-d">
+          <div>chatApp is made by Khanh, Thanh and Khang for study purposes only.</div>
+        </div>
+        <div id="help-content" class="help-content hide-d">
+          <div>This is just a demo version and may not be supported anymore in the future!
+            Feel free to fix the problems yourself if you had chatApp sources code.
+          </div>
+        </div>
+        <div id="edit-profile-content" class="edit-profile-content hide-d">
+          <form id="edit-form" class="edit-form">
+            <label>New user name</label>
+            <input type="text" name="editUserName" value="">
+            <label>New password</label>
+            <input type="password" name="editPassword" value="">
+            <label>Your age</label>
+            <input type="number" name="editAge" min="10" value="">
+            <button id="edit-profile-btn">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="create-group-tab" class="create-group-tab hide-d">
+      <button id="create-group-close" class="setting-close"><i class="fas fa-times"></i></button>
+      <p>Create new group</p>
+      <div id="create-group-name" class="">
+        <div id="group-name-error" class="group-name-error hide-v">Please enter group's name</div>
+        <label>Group name</label>
+        <input id="new-group-name" type="text" name="newGroupName" placeholder="Group name">
+        <button id="new-group-name-btn">Next</button>
+      </div>
+      <div id="create-group-member" class="hide-d">
+        <label>Set group's members</label>
+        <div id="member-from-friend" class="member-from-friend">
+          <div>
+            <div class="user-avatar-letter">H</div>
+            <div class="user-name">Hoang Khang</div>
+          </div>
+        </div>
+      </div>
+      <button id="create-group-btn" class="create-group-btn hide-d">Create Group</button>
+    </div>
+
+    <div id="group-info-tab" class="group-info-tab hide-d">
+      <div id="group-info-option" class="setting-option">
+        <p>Group</p>
+        <div id="group-info" class="group-info active-option">Infomation</div>
+        <div id="group-member" class="group-member">Members</div>
+        <div id="add-group-member" class="add-group-member">Add member</div>
+        <div id="group-info-other" class="group-info-other">Other</div>
+      </div>
+      <div id="group-info-tab-content" class="setting-content">
+        <div id="group-info-close" class="setting-close"><i class="fas fa-times"></i></div>
+        <div id="group-info-content" class="user-profile-content"></div>
+        <div id="group-member-content" class="group-member-content hide-d">
+        </div>
+        <div id="add-group-member-content" class="add-group-member-content hide-d">
+          <p>Add Member</p>
+          <button>Add</button>
+          <div>
+            <div>H</div>
+            <div>Hoang Khang</div>
+          </div>
+        </div>
+        <div id="group-other-content" class="group-other-content hide-d">
+          <button id="leave-group-btn">Leave Group</button>
+          <button id="delete-group-btn">Delete Group</button>
+        </div>
+        <div id="edit-profile-content" class="edit-profile-content hide-d">
+          <form id="edit-form" class="edit-form">
+            <label>New user name</label>
+            <input type="text" name="editUserName" value="">
+            <label>New password</label>
+            <input type="password" name="editPassword" value="">
+            <label>Your age</label>
+            <input type="number" name="editAge" min="10" value="">
+            <button id="edit-profile-btn">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="nav-bar" class="nav-bar">
+      <div id="app" class="app">
+        <div id="logo" class="logo">
+          <img src="../statics/img/title-logo.png" width="35px">
+          <div>chatApp</div>
+        </div>
+      </div>
+      <nav id="nav" class="nav">
+        <div id="friends" class="friends">
+          <i class="fas fa-user-friends"></i>
+          <span class="nav-label">Friends</span>
+        </div>
+        <div id="groups" class="groups">
+          <i class="fas fa-users"></i>
+          <span class="nav-label">Groups</span>
+        </div>
+        <div id="notification" class="notification">
+          <i class="fas fa-bell"></i>
+          <span class="nav-label">Notification</span>
+        </div>
+        <div id="setting" class="setting">
+          <i class="fas fa-cogs"></i>
+          <span class="nav-label">Setting</span>
+        </div>
+      </nav>
+    </div>
+
+    <!--thay 'clogin' thanh 'login' khi xong-->
+    <a id="login" href="login.html"></a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js" integrity="sha512-5yJ548VSnLflcRxWNqVWYeQZnby8D8fJTmYRLyvs445j1XmzR8cnWi85lcHx3CUEeAX+GrK3TqTfzOO6LKDpdw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/windowControl.js"></script>
+    <script src="../js/mainContent/main.js"></script>
+    <script src="../js/mainContent/setting.js"></script>
+    <script src="../js/mainContent/database.js"></script>
+    <script src="../js/mainContent/friend.js"></script>
+    <script src="../js/mainContent/group.js"></script>
+    <script src="../js/mainContent/header.js"></script>
+    <script src="../js/mainContent/notification.js"></script>
+    <script src="../js/mainContent/webSocket.js"></script>
+    <script src="../js/mainContent/mesage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  color: #8C8B8B;
+  overflow-x: hidden;
+  transition: 0.5s;
+  background-color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
+.main-content {
+  min-height: 100vh;
+  width: 100%;
+  display: block;
+}
+
+#noti-container {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+}
+
+#noti-box button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#noti-box {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+  background-size: cover;
+  border: 1px solid grey;
+  margin-top: calc(50vh - 100px);
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 3px 7px 30px black;
+  animation: slide-down 1s;
+}
+
+#noti-content {
+  width: 400px;
+  height: 140px;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 45px;
+}
+
+@keyframes slide-down {
+  from {
+    margin-top: calc(40vh - 100px);
+    opacity: 0;
+  }
+
+  to {
+    margin-top: calc(50vh - 100px);
+    opacity: 1;
+  }
+}
+
+.login {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-align: center;
+  height: auto;
+  opacity: 1;
+}
+
+.signup {
+  width: 100%;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.signup div {
+  display: flex;
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signup div input {
+  width: 68%;
+  margin-right: 2%;
+}
+
+.signup div select {
+  width: 30%;
+}
+
+#logo {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 50px;
+  margin-top: 10px;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  width: 200px;
+  height: 200px;
+  background-size: 350%;
+  animation: background-changing 15s linear infinite;
+}
+
+.logo-img {
+  width: 200px;
+  height: 200px;
+}
+
+.logo-img-small {
+  display: none;
+  width: 130px;
+  height: 130px;
+}
+
+input, select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  height: 40px;
+  padding-left: 25px;
+  width: 50vw;
+  font-size: 18px;
+  border: none;
+  box-shadow: inset 1px 3px 4px #C4C4C4;
+  outline: none;
+  transition: 0.5s;
+}
+
+select {
+  color: #8C8B8B;
+}
+
+.button-light {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 3px;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+  cursor: pointer;
+}
+
+.button-light a {
+  display: inline-block;
+  color: white;
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+}
+
+.button-light:hover {
+  animation: background-changing 10s linear infinite;
+}
+
+.button-light::before {
+  content: "";
+  width: 210px;
+  top: -3px;
+  left: -5px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.button-light:hover::before {
+  filter: blur(15px);
+  animation: background-changing 15s linear infinite;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@keyframes background-changing {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 300%;
+  }
+}
+
+#open-signup-form {
+  top: 0;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.open-signup-btn {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+  border: none;
+  outline: none;
+  color: white;
+  width: 150px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right, #29FFDF, #29D5FF, #29FFDF, #29D5FF, #29FFDF);
+  background-size: 350%;
+}
+
+.hide-o {
+  opacity: 0;
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+#about {
+  margin-top: 100px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  input, select {
+    width: 90%;
+    height: 40px;
+    margin-top: 30px;
+  }
+
+  .signup div {
+    width: 90%;
+  }
+
+  #have-account {
+    display: none;
+  }
+
+  .open-signup-btn {
+    margin-left: 10px;
+  }
+
+  .theme-btn {
+    right: 30px;
+  }
+
+  #logo, #logo img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .logo-img {
+    display: none;
+  }
+
+  .logo-img-small {
+    display: inline;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #logo {
+    width: 199px;
+    height: 198px;
+  }
+
+  #logo img {
+    width: 200px;
+    height: 200px;
+  }
+
+  input, select {
+    width: 50vw;
+    margin-top: 50px;
+  }
+}

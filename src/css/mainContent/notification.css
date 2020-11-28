@@ -1,0 +1,62 @@
+.notification-box, .confirm-box {
+  position: absolute;
+  width: 350px;
+  min-height: 100px;
+  height: auto;
+  background-color: white;
+  border: 3px solid rgba(230, 230, 230, 1);
+  border-radius: 10px;
+  box-shadow: 2px 5px 10px lightgray;
+  left: calc(50% - 175px);
+  top: 10px;
+  transition: 0.5s;
+  z-index: 1;
+  font-size: 20px;
+}
+
+.confirm-box {
+  display: grid;
+  grid-template-rows: auto 40px;
+}
+
+.confirm-message {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.confirm-btn {
+  display: flex;
+  position: relative;
+}
+
+.confirm-btn button {
+  height: 30px;
+  width: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+  border: none;
+  color: white;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+}
+
+.notification-message {
+  width: 350px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.hide-top {
+  top: -50%;
+}
+
+.hide-d {
+  display: none;
+}
+
+.hide-o {
+  opacity: 0;
+}

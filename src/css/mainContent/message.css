@@ -1,0 +1,119 @@
+.chat-area {
+  grid-area: hai;
+  height: calc(100vh - 150px);
+  width: 100%;
+}
+
+.message-view-container {
+  height: calc(100% - 90px);
+  position: relative;
+  flex-direction: column-reverse;
+  display: flex;
+}
+
+.message-view {
+  max-height: 100%;
+  width: calc(100% - 5px);
+  bottom: 0;
+  overflow: scroll;
+  padding: 10px;
+}
+
+.message-view::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.message-sent {
+  min-width: 100px;
+  max-width: 80%;
+  margin-bottom: 10px;
+  height: auto;
+  float: right;
+  clear: both;
+}
+
+.message-sent div:first-child {
+  overflow-wrap: break-word;
+  max-width: 100%;
+  background-color: rgba(43, 213, 255, 1);
+  border-radius: 20px;
+  border-bottom-right-radius: 0;
+  padding: 15px;
+  margin-bottom: 5px;
+}
+
+.message-sent div:last-child {
+  font-size: 15px;
+  position: relative;
+  float: right;
+}
+
+.message-received div:first-child {
+  overflow-wrap: break-word;
+  padding: 15px;
+  background-color: rgba(43, 255, 223, 1);
+  border-radius: 20px;
+  border-bottom-left-radius: 0;
+}
+
+.message-received div:last-child {
+  font-size: 15px;
+  position: relative;
+  float: left;
+}
+
+.message-received {
+  min-width: 100px;
+  max-width: 80%;
+  max-height: 200px;
+  float: left;
+  clear: both;
+  margin-bottom: 15px;
+}
+
+.message-func {
+  height: 20px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.message-func i {
+  display: block;
+  font-size: 20px;
+  height: 20px;
+  line-height: 20px;
+  width: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.message-send {
+  height: 60px;
+  width: 100%;
+}
+
+.message-content {
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  height: 40px;
+  width: 80%;
+  margin-left: 8%;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.message-send-btn {
+  position: relative;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+  margin-left: 10px;
+  color: #8C8B8B;
+}

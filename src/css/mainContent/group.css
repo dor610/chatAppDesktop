@@ -1,0 +1,198 @@
+.create-group-tab {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.create-group-tab p {
+  margin-top: 10vh;
+  font-size: 35px;
+  margin-bottom: 50px;
+}
+
+.create-group-tab label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.create-group-tab input {
+  display: block;
+  width: 60%;
+  height: 40px;
+  margin-left: 20%;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: inset 1px 3px 4px #C4C4C4;
+  outline: none;
+  padding-left: 20px;
+}
+
+#new-group-name-btn {
+  width: 150px;
+  margin-left: calc(50% - 75px);
+  outline: none;
+  border: none;
+  color: white;
+  height: 30px;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+}
+
+.member-from-friend {
+  border: 1px solid rgba(230, 230, 230, 0.5);
+  padding: 20px 20%;
+  max-height: 50vh;
+  overflow: scroll;
+}
+
+.member-from-friend div {
+  display: flex;
+  height: 60px;
+}
+
+.member-from-friend div div:first-child {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.member-from-friend div div:last-child {
+  height: 60px;
+  line-height: 60px;
+  margin-top: 0;
+}
+
+.add-group-member-content {
+  overflow: scroll;
+  padding-left: 5%;
+  padding-top: 30px;
+  position: relative;
+  cursor: pointer;
+}
+
+.add-group-member-content::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.add-group-member-content button {
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+  color: white;
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  top: 35px;
+  right: 80px;
+}
+
+.create-group-btn {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  bottom: 20px;
+  right: 50px;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+  color: white;
+  z-index: 1;
+}
+
+.group-name-error {
+  background-color: rgba(255, 0, 0, 0.2);
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+
+.member-from-friend::-webkit-scrollbar, .group-member-content::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.group-member-content {
+  padding-left: 5vw;
+  padding-top: 4vh;
+}
+
+.group-member-content p, .add-group-member-content p {
+  font-size: 25px;
+  margin-bottom: 2vh;
+}
+
+.group-member-content div, .add-group-member-content div {
+  display: flex;
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+  padding-bottom: 5px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.group-member-content div div:first-child, .add-group-member-content div div:first-child {
+  height: 50px;
+  width: 50px;
+  background-color: rgba(41, 255, 223, 0.7);
+  color: black;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 50px;
+  display: block;
+  padding: 0;
+}
+
+.group-member-content div div:nth-child(2), .add-group-member-content div div:last-child {
+  line-height: 50px;
+  margin-left: 20px;
+  border: none;
+}
+
+.group-member-content div button {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  top: 10px;
+  right: 20px;
+  position: absolute;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  background-color: transparent;
+  color: #8C8B8B;
+}
+
+.group-member-content div button:hover {
+  color: black;
+}
+
+.group-other-content {
+  display: flex;
+  padding-top: 30vh;
+}
+
+.group-other-content button {
+  display: block;
+  outline: none;
+  border: none;
+  color: white;
+  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hide-d {
+  display: none;
+}
+
+.hide-v {
+  visibility: hidden;
+}
