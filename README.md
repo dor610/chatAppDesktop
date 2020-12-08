@@ -1,3 +1,3 @@
 # chatAppDesktop
  
-An chat application build by electronJs
+build an chat application by using electronJs
