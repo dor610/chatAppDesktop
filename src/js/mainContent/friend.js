@@ -67,6 +67,7 @@ const openFriendsTab = () =>{
   notiTab.classList.add('hide-d');
   recentChat.classList.add('hide-d');
   friendRequestTab.classList.add('hide-d');
+  searchResult.classList.add('hide-d');
 };
 
 const opentFriendRequestTab = () =>{
@@ -75,6 +76,7 @@ const opentFriendRequestTab = () =>{
   friendsTab.classList.add('hide-d');
   notiTab.classList.add('hide-d');
   recentChat.classList.add('hide-d');
+  searchResult.classList.add('hide-d');
 };
 
 function acceptFriendRequest() {

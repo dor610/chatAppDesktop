@@ -39,7 +39,9 @@ button {
   margin-top: -5px;
   display: grid;
   grid-template-columns: 300px calc(100% - 300px);
-  grid-template-areas: 'mot hai';
+  grid-template-rows: 50px auto;
+  grid-template-areas: 'phu hai'
+    'mot hai';
 }
 
 .title {
@@ -164,7 +166,8 @@ button {
 
 @media only screen and (max-width: 700px) {
   .container {
-    grid-template-areas: 'hai hai';
+    grid-template-areas: 'hai hai'
+      'hai hai';
   }
 
   .other-func {

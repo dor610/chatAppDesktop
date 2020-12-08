@@ -1,11 +1,151 @@
 .other-func {
   width: 100%;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 200px);
 }
 
-.friends-tab, .groups-tab, .recent-chat, .noti-tab, .friend-request-tab {
+.search-box {
+  grid: phu;
+  background-color: white;
+  border-top: 1px solid rgba(230, 230, 230, 0.6);
+  display: flex;
+}
+
+.search-box button, .search-box input {
+  outline: none;
+  border: none;
+}
+
+.search-key-word {
+  display: block;
+  margin-left: 10px;
+  font-size: 18px;
+  height: 30px;
+  width: 80%;
+  border: none;
+  margin-top: 10px;
+  box-shadow: inset 1px 3px 4px #C4C4C4;
+  font-size: 15px;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+.search-button {
+  background-color: transparent;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #8C8B8B;
+}
+
+.search-result::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.search-result p {
+  font-size: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
+  margin-top: 15px;
+}
+
+.no-friend-found, .no-group-found, .no-new-people-found {
+  display: block;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: auto;
+  text-align: center;
+}
+
+.search-result div div {
+  display: flex;
+  line-height: 55px;
+  padding-left: 20px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
+}
+
+.search-result div div:hover {
+  background-image: linear-gradient(to top, rgba(41, 213, 255, 0.1), transparent);
+  cursor: pointer;
+  color: black;
+}
+
+.search-result div div div:first-child {
+  border: none;
+  padding-left: 0;
+  display: block;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 50px;
+  color: black;
+}
+
+.new-friend div {
+  display: flex;
+  position: relative;
+}
+
+.new-friend div:hover {
+  cursor: default !important;
+}
+
+.new-friend button {
+  display: block;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 20px;
+  right: 20px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #8C8B8B;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.new-friend button:hover {
+  color: rgba(41, 213, 255, 1);
+  font-size: 20px;
+}
+
+.new-friend div div:first-child {
+  background-color: rgba(41, 255, 223, 0.7);
+}
+
+.new-friend div div:nth-child(n) {
+  border-bottom: none;
+}
+
+.friend-search-result div div:first-child {
+  background-color: rgba(41, 255, 223, 0.7);
+}
+
+.group-search-result div div:first-child {
+  background-color: rgba(41, 213, 255, 0.7);
+}
+
+.search-result div div div:last-child {
+  border: none;
+  padding-left: 0;
+  margin-left: 10px;
+}
+
+.search-result div div div:last-child:hover, .new-friend div div:nth-child(n):hover {
+  background-image: linear-gradient(transparent, transparent);
+}
+
+.friends-tab, .groups-tab, .recent-chat, .noti-tab, .friend-request-tab, .search-result {
   grid-area: mot;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 195px);
   width: 100%;
   background-color: white;
   max-height: calc(100vh - 145px);

@@ -53,11 +53,11 @@ const onDisconnect = () =>{
   stompClient.disconnect();
 }
 
-function sendGroupMessage(){
+const sendGroupMessage = () =>{
   let message = messageConent.value;
 
   if(message){
-    send('https://secret-brook-88276.herokuapp.com/websocket-chat/app/message', JSON.stringify({
+    sendMessage('/app/message', JSON.stringify({
       recipient: currentRecipient.id,
       sender: user.email,
       type: type.group,
@@ -67,17 +67,17 @@ function sendGroupMessage(){
   }
 };
 
-function sendPrivateMessage(){
-  let message = messageConent.value;
+const sendPrivateMessage = (message) =>{
 
   if(message){
-    send('https://secret-brook-88276.herokuapp.com/app/message', JSON.stringify({
+    sendMessage('/app/message', JSON.stringify({
       recipient: currentRecipient.id,
       sender: user.email,
       type: type.private,
       messageType: messageType.text,
       message: message
     }));
+    displaySentPrivateMessage(message);
   }
 };
 

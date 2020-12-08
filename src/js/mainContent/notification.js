@@ -31,3 +31,12 @@ confirmedBtn.addEventListener('click', () =>{
 cancelConfirm.addEventListener('click', () =>{
   confirmValue = false;
 });
+
+const openNotiTab = () =>{
+  groupsTab.classList.add('hide-d');
+  friendsTab.classList.add('hide-d');
+  notiTab.classList.remove('hide-d');
+  recentChat.classList.add('hide-d');
+  friendRequestTab.classList.add('hide-d');
+  searchResult.classList.add('hide-d');
+};

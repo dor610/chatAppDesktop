@@ -205,6 +205,7 @@ const openGroupsTap = () =>{
   notiTab.classList.add('hide-d');
   recentChat.classList.add('hide-d');
   friendRequestTab.classList.add('hide-d');
+  searchResult.classList.add('hide-d');
   if(user.email === currentGroup.admin)
     deleteGroupBtn.classList.remove('hide-d');
   else deleteGroupBtn.classList.add('hide-d');
@@ -218,7 +219,7 @@ const setUserGroups = () =>{
     let divParent = document.createElement('div');
     divParent.id = item;
     divParent.addEventListener('click', setGroupRecipientInfo);
-    divParent.addEventListener('click', getGroupMessage);
+    //divParent.addEventListener('click', getGroupMessage);
     let divChild = document.createElement('div');
     divChild.innerHTML = user.groups[item][0].toUpperCase();
     let pChild = document.createElement('p');

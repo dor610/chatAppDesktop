@@ -6,6 +6,10 @@ function setFriendRecipientInfo(){
 
   recipientAvatar.innerHTML = user.friends[friendEmail][0].toUpperCase();
   recipientName.innerHTML = user.friends[friendEmail];
+
+  currentRecipient.id = friendEmail;
+  currentRecipient.name = user.friends[friendEmail];
+  currentRecipient.isGroup = false;
 };
 
 function setGroupRecipientInfo(){
@@ -21,4 +25,8 @@ function setGroupRecipientInfo(){
     div.id = 'open_'+groupId;
     div.addEventListener('click', openGroupInfoTab, true);
     recipientName.appendChild(div);
+
+    currentRecipient.id = groupId;
+    currentRecipient.name = user.groups[groupId];
+    currentRecipient.isGroup = true;
 }

@@ -189,6 +189,14 @@
   margin-right: auto;
 }
 
+.groups-content div div:first-child {
+  background-color: rgba(41, 213, 255, 0.7);
+}
+
+.group-content div:hover {
+  background-image: linear-gradient(to top, rgba(41, 255, 223, 0.1), transparent);
+}
+
 .hide-d {
   display: none;
 }
