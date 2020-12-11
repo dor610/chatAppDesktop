@@ -6,7 +6,6 @@ const notiBtn = document.getElementById('notification');
 const friendsTab = document.getElementById('friends-tab');
 const groupsTab = document.getElementById('groups-tab');
 const notiTab = document.getElementById('noti-tab');
-const recentChat = document.getElementById('recent-chat');
 
 
 //database.js
@@ -17,7 +16,6 @@ const loginBtn = document.getElementById('login');
 const loading = document.getElementById('loading-box');
 
 const friendsContent = document.getElementById('friends-content');
-const recentChatContent = document.getElementById('recent-chat-content');
 
 //header.js
 const recipientInfo = document.getElementById('recipient-info');
@@ -41,9 +39,10 @@ const groupOtherContent = document.getElementById('group-other-content');
 //message
 const chatArea = document.getElementById('chat-area')
 const messageContainer = document.getElementById('message-view-container');
-const sendImage = document.getElementById('send-image');
+/*const sendImage = document.getElementById('send-image');
 const sendEmoji = document.getElementById('send-emoji');
-const sendFIle = document.getElementById('send-file');
+const sendFIle = document.getElementById('send-file');*/
+const imageForm = document.getElementById('image-form');
 const messageFunction = document.getElementById('message-func');
 const messageForm = document.getElementById('message-form');
 const messageConent = document.getElementById('message-content');
@@ -62,6 +61,55 @@ const newFriend = document.getElementById('new-friend');
 const otherPeople = document.getElementById('other-people');
 const noNewPeopleFound = document.getElementById('no-new-people-found');
 
+//Welcome
+const welcomeBox = document.getElementById('welcome-box');
+
+
+//setting tab
+const userProfileOption = document.getElementById('user-profile');
+const userAccountOption = document.getElementById('user-account');
+const editProfileOption = document.getElementById('edit-profile');
+const aboutOption = document.getElementById('about');
+const helpOption = document.getElementById('help');
+
+const userProfileContent = document.getElementById('user-profile-content');
+const userAccountContent = document.getElementById('user-account-content');
+const editProfileContent = document.getElementById('edit-profile-content');
+const aboutContent = document.getElementById('about-content');
+const helpContent = document.getElementById('help-content');
+
+const settingTab = document.getElementById('setting-tab');
+
+const settingCloseBtn = document.getElementById('setting-close');
+
+const settingBtn = document.getElementById('setting');
+
+const editForm = document.getElementById('edit-form');
+const newUserName = document.getElementById('new-user-name');
+const newPassword = document.getElementById('new-password');
+const newAge = document.getElementById('new-age');
+
+const deleteAccountBtn = document.getElementById('delete-account');
+
+//Notification
+const notiContent = document.getElementById('noti-content');
+
+const notiBox = document.getElementById('notification-box');
+const notiMessage = document.getElementById('notification-message');
+
+const confirmBox = document.getElementById('confirm-box');
+const confirmMessage = document.getElementById('confirm-message');
+const confirmedBtn = document.getElementById('confirmed-btn');
+const cancelConfirm = document.getElementById('cancel-confirm-btn');
+
+let confirmValue = false;
+
+//recent chat
+const recentChat = document.getElementById('recent-chat');
+const recentChatContent = document.getElementById('recent-chat-content');
+const friendRecentChats = document.getElementById('friend-recent-chat');
+const groupRecentChats = document.getElementById('group-recent-chat');
+
 const user = {
   email: '',
   userName: '',
@@ -70,14 +118,17 @@ const user = {
   receivedFriendRequest: '',
   friendRequest: '',
   gender: '',
-  age: ''
+  age: '',
+  friendRecentChats: '',
+  groupRecentChats: ''
 }
 
 const currentGroup = {
   groupId: '',
   members: '',
   admin: '',
-  groupName: ''
+  groupName: '',
+  removedMember: ''
 };
 
 const currentRecipient = {
@@ -99,7 +150,3 @@ const messageType = {
   image: 'Image',
   text: 'Text'
 };
-
-notiBtn.addEventListener('click', () =>{
-  openNotiTab();
-});

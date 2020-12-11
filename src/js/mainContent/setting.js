@@ -1,23 +1,3 @@
-const userProfileOption = document.getElementById('user-profile');
-const userAccountOption = document.getElementById('user-account');
-const editProfileOption = document.getElementById('edit-profile');
-const aboutOption = document.getElementById('about');
-const helpOption = document.getElementById('help');
-
-const userProfileContent = document.getElementById('user-profile-content');
-const userAccountContent = document.getElementById('user-account-content');
-const editProfileContent = document.getElementById('edit-profile-content');
-const aboutContent = document.getElementById('about-content');
-const helpContent = document.getElementById('help-content');
-
-const settingTab = document.getElementById('setting-tab');
-
-const settingCloseBtn = document.getElementById('setting-close');
-
-const settingBtn = document.getElementById('setting');
-
-const editForm = document.getElementById('edit-form');
-
 settingBtn.addEventListener('click', () =>{
   openSettingTab();
 }, true);
@@ -73,6 +53,9 @@ const openSettingTab = () =>{
 
 const closeSettingTab = () =>{
   settingTab.classList.add('hide-d');
+  newUserName.value = '';
+  newPassword.value = '';
+  newAge.value = '';
 }
 
 
@@ -157,6 +140,10 @@ const setUserProfile = () =>{
     else
     firstChild.innerHTML = item.charAt(0).toUpperCase() + item.slice(1);
     let lastChild = document.createElement('div');
+
+    if(item === 'email')
+    lastChild.innerHTML = user[item].replaceAll("__",".");
+    else
     lastChild.innerHTML = user[item][0] + user[item].slice(1).toLowerCase();
 
     divParent.appendChild(firstChild);
@@ -165,9 +152,7 @@ const setUserProfile = () =>{
   });
   let logoutBtn = document.createElement('button');
   logoutBtn.innerHTML = 'Logout';
-  logoutBtn.addEventListener('click', ()=>{
-    logout();
-  });
+  logoutBtn.addEventListener('click',logout);
   logoutBtn.classList.add('logout');
 
   userProfileContent.appendChild(logoutBtn);
@@ -178,22 +163,60 @@ const setUserProfile = () =>{
 
 editForm.addEventListener('submit', e =>{
   e.preventDefault();
-  $.ajax({
-    type: "PUT",
-    url: "https://secret-brook-88276.herokuapp.com/app/users/edit",
-    headers: {email: email},
-    data: $('#edit-form').serialize(),
-    success: () =>{
-      console.log("edit succeed!");
-      removeUserInfo();
-      getUserInfo();
-      setTimeout(() =>{
-        readUserInfo();
-      },2000)
-    },
-    error: () =>{
-      console.log("edit error!");
-    }
+
+  showConfirmBox("Save changes?", () =>{
+    $.ajax({
+      type: "PUT",
+      url: "https://secret-brook-88276.herokuapp.com/app/users/edit",
+      headers: {email: email},
+      data: $('#edit-form').serialize(),
+      success: () =>{
+        console.log("edit succeed!");
+        removeUserInfo();
+        getUserInfo();
+        setTimeout(() =>{
+          readUserInfo();
+        },2000);
+        setTimeout(()=>{
+          showNotiBox("Your profile war updated!");
+          closeEditProfile();
+          openUserProfile();
+          newUserName.value = '';
+          newPassword.value = '';
+          newAge.value = '';
+        }, 2500);
+      },
+      error: () =>{
+        showNotiBox("Some error has occurred!")
+        console.log("edit error!");
+      }
+    });
+    confirmValue = false;
+  }, () =>{
+    console.log('cancel');
+  });
+});
+
+deleteAccountBtn.addEventListener('click', () =>{
+  showConfirmBox("Are you sure you want to delete your account?", () =>{
+    $.ajax({
+      type: "DELETE",
+      url: "https://secret-brook-88276.herokuapp.com/app/users/delete",
+      headers: {email: user.email},
+      success: () =>{
+        showNotiBox("Your account has been deleted!");
+        removeUserInfo();
+        setTimeout(() =>{
+          loginBtn.click();
+        }, 3000);
+      },
+      error: () =>{
+        showNotiBox("Some error has occurred!");
+      }
+    });
+    confirmValue = false;
+  }, () =>{
+    console.log('cancel');
   });
 });
 
@@ -206,6 +229,7 @@ const logout = () =>{
     headers: {logout: "cry"},
     success: () =>{
       console.log("succeed");
+      removeUserInfo();
       loginBtn.click();
     },
     error: () =>{

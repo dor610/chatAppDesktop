@@ -20,7 +20,7 @@ function onConnected() {
     // Tell your username to the server
   sendMessage('/app/register', user.email);
 
-    stompClient.subscribe(`/user/${user.email}/msg`,  data =>{
+  stompClient.subscribe(`/user/${user.email}/msg`,  data =>{
     console.log(`-------- received message:\n`+ data.body+`\n--------received message!!!!`);
     processArrivingMessage(data.body);
     //displayMessage(data);
@@ -53,8 +53,7 @@ const onDisconnect = () =>{
   stompClient.disconnect();
 }
 
-const sendGroupMessage = () =>{
-  let message = messageConent.value;
+const sendGroupMessage = (message) =>{
 
   if(message){
     sendMessage('/app/message', JSON.stringify({
@@ -64,6 +63,7 @@ const sendGroupMessage = () =>{
       messageType: messageType.text,
       message: message
     }));
+    displaySentGroupMessage(message);
   }
 };
 

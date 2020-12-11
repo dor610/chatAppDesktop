@@ -1,7 +1,7 @@
 {
   "name": "chatapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "chatApp",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,12 +12,9 @@
     "appId": "com.herokuapp.chatapp-kkt"
   },
   "devDependencies": {
-    "electron": "10.1.2"
+    "electron": "10.1.2",
+    "electron-builder": "^22.9.1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "electron": "^10.1.5",
-    "electron-builder": "^22.9.1"
-  }
+  "license": "ISC"
 }

@@ -159,16 +159,23 @@ const setAddGroupMemberFromFriend = () =>{
 
 function removeGroupMember() {
   let memberEmail = this.id.substring(7, this.id.length);
-
-  $.ajax({
-    type: "DELETE",
-    url: 'https://secret-brook-88276.herokuapp.com/app/groups/delete/members',
-    headers: {email: user.email},
-    data: 'groupId='+currentGroup.groupId+"&member="+memberEmail,
-    success: () =>{
-      loadGroupMember();
-    }
-  });
+  currentGroup.removedMember = memberEmail;
+  showConfirmBox("Are you sure you want to remove "+currentGroup.members[memberEmail]+" from "+currentGroup.groupName+"?",
+                  ()=>{
+                    $.ajax({
+                      type: "DELETE",
+                      url: 'https://secret-brook-88276.herokuapp.com/app/groups/delete/members',
+                      headers: {email: user.email},
+                      data: 'groupId='+currentGroup.groupId+"&member="+currentGroup.removedMember,
+                      success: () =>{
+                        showNotiBox(currentGroup.members[currentGroup.removedMember]+" has been removed from "+currentGroup.groupName+"!");
+                        loadGroupMember();
+                      }
+                    });
+                    confirmValue = false;
+                  }, () =>{
+                    console.log("cancel");
+                  });
 }
 
 
@@ -219,7 +226,7 @@ const setUserGroups = () =>{
     let divParent = document.createElement('div');
     divParent.id = item;
     divParent.addEventListener('click', setGroupRecipientInfo);
-    //divParent.addEventListener('click', getGroupMessage);
+    divParent.addEventListener('click', getGroupMessage);
     let divChild = document.createElement('div');
     divChild.innerHTML = user.groups[item][0].toUpperCase();
     let pChild = document.createElement('p');
@@ -362,34 +369,47 @@ const loadUserGroup = () =>{
 }
 
 const leaveGroup = () =>{
-  $.ajax({
-    type: "POST",
-    url: 'https://secret-brook-88276.herokuapp.com/app/groups/leave',
-    headers: {email: user.email},
-    data: 'groupId='+currentGroup.groupId,
-    success: (data) =>{
-      console.log(data);
-      loadUserGroup();
-      closeGroupInfoTab();
-    },
-    error: () => console.log('error'),
-  })
+  showConfirmBox("Are you sure you want to leave "+currentGroup.groupName+"?",
+                ()=>{
+                  $.ajax({
+                    type: "POST",
+                    url: 'https://secret-brook-88276.herokuapp.com/app/groups/leave',
+                    headers: {email: user.email},
+                    data: 'groupId='+currentGroup.groupId,
+                    success: (data) =>{
+                      console.log(data);
+                      loadUserGroup();
+                      showNotiBox("You has left "+currentGroup.groupName+"!");
+                      closeGroupInfoTab();
+                    },
+                    error: () => console.log('error'),
+                  });
+                  confirmValue = false;
+                }, () =>{
+                  console.log("cancel");
+                })
 }
 
 const deleteGroup = () =>{
   if(user.email === currentGroup.admin){
-    $.ajax({
-      type: "DELETE",
-      url: 'https://secret-brook-88276.herokuapp.com/app/groups/delete',
-      headers: {email: user.email},
-      data: 'groupId='+currentGroup.groupId,
-      success: (data) =>{
-        console.log(data);
-        loadUserGroup();
-        closeGroupInfoTab();
-        //hien thong bao;
-      }
-    });
+    showConfirmBox("Are you sure you want to delete this group?",
+                  () =>{
+                    $.ajax({
+                      type: "DELETE",
+                      url: 'https://secret-brook-88276.herokuapp.com/app/groups/delete',
+                      headers: {email: user.email},
+                      data: 'groupId='+currentGroup.groupId,
+                      success: (data) =>{
+                        console.log(data);
+                        loadUserGroup();
+                        showNotiBox(currentGroup.groupName+" has been deleted!");
+                        closeGroupInfoTab();
+                      }
+                    });
+                    confirmValue = false;
+                  }, () =>{
+                    console.log("cancel");
+                  });
   }else{
     //hiện thông báo
     console.log('access denied!');

@@ -24,7 +24,10 @@ const requireAuth = document.getElementById('require-auth');
 const gender = document.getElementById('gender');
 
 const loading = document.getElementById('loading-box');
-const userEmail = document.getElementById('uname');
+const userEmail = document.getElementById('email');
+const password = document.getElementById('password');
+
+const newEmail = document.getElementById('new-email');
 
 let email = '';
 let pageType = type.innerHTML;
@@ -166,7 +169,7 @@ const writeToUserInfo = (data) => {
   let request = db.transaction(["userInfo"], "readwrite")
   .objectStore("userInfo");
 //chua xong
-  request.add({email: data.email,
+  request.add({email: data.email.replaceAll('.','__'),
                userName: data.userName});
 
   request.onsuccess = function(event) {
@@ -197,11 +200,11 @@ const getUserInfo = () =>{
 loginForm.addEventListener('submit', e => {
   openLoading();
   e.preventDefault();
-  email = userEmail.value;
+  email = userEmail.value.replaceAll('.','__');
   $.ajax({
        type: "POST",
        url: "https://secret-brook-88276.herokuapp.com/auth",
-       data: $('#login-form').serialize(),
+       data: "email="+email+"&password="+password.value,
        xhrFields: {
          withCredentials: true
        },

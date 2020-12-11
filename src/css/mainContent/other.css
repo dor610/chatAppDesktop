@@ -36,14 +36,14 @@
   color: #8C8B8B;
 }
 
-.search-result::-webkit-scrollbar {
+.search-result::-webkit-scrollbar, .recent-chat-content::-webkit-scrollbar {
   width: 0px;
   /* Remove scrollbar space */
   background: transparent;
   /* Optional: just make scrollbar invisible */
 }
 
-.search-result p {
+.search-result p, .recent-chat-content p {
   font-size: 20px;
   width: 90%;
   margin-left: auto;
@@ -61,7 +61,7 @@
   text-align: center;
 }
 
-.search-result div div {
+.search-result div div, .recent-chat-content div div {
   display: flex;
   line-height: 55px;
   padding-left: 20px;
@@ -70,13 +70,13 @@
   border-bottom: 1px solid rgba(230, 230, 230, 0.6);
 }
 
-.search-result div div:hover {
+.search-result div div:hover, .recent-chat-content div div:hover {
   background-image: linear-gradient(to top, rgba(41, 213, 255, 0.1), transparent);
   cursor: pointer;
   color: black;
 }
 
-.search-result div div div:first-child {
+.search-result div div div:first-child, .recent-chat-content div div div:first-child {
   border: none;
   padding-left: 0;
   display: block;
@@ -125,21 +125,22 @@
   border-bottom: none;
 }
 
-.friend-search-result div div:first-child {
+.friend-search-result div div:first-child, .friend-recent-chat div div:first-child {
   background-color: rgba(41, 255, 223, 0.7);
 }
 
-.group-search-result div div:first-child {
+.group-search-result div div:first-child, .group-recent-chat div div:first-child {
   background-color: rgba(41, 213, 255, 0.7);
 }
 
-.search-result div div div:last-child {
+.search-result div div div:last-child, .recent-chat-content div div div:last-child {
   border: none;
   padding-left: 0;
   margin-left: 10px;
 }
 
-.search-result div div div:last-child:hover, .new-friend div div:nth-child(n):hover {
+.search-result div div div:last-child:hover, .new-friend div div:nth-child(n):hover,
+.recent-chat-content div div div:hover {
   background-image: linear-gradient(transparent, transparent);
 }
 

@@ -5,7 +5,7 @@
 searchKeyWord.addEventListener('input', () =>{
   if(searchResult.classList.contains('hide-d'))
     openSearchResultTab();
-  let keyWord = searchKeyWord.value.toLowerCase();
+  let keyWord = searchKeyWord.value.toLowerCase().replaceAll('.','__');
   let friendList = Object.keys(user.friends);
   let groupList = Object.keys(user.groups);
   friendSearchResult.innerHTML = '';
@@ -64,7 +64,7 @@ searchKeyWord.addEventListener('input', () =>{
 });
 
 searchButton.addEventListener('click', () =>{
-  let keyWord = searchKeyWord.value;
+  let keyWord = searchKeyWord.value.replaceAll('.','__');
 
   if(!user.friends[keyWord]){
     $.ajax({
@@ -133,8 +133,8 @@ function sendFriendRequest(){
   $.ajax({
     type: "POST",
     url: "https://secret-brook-88276.herokuapp.com/app/friends/add",
-    headers: {email: user.email},
-    data: "friendEmail="+friendEmail,
+    headers: {email: user.email.replaceAll('.', '__')},
+    data: "friendEmail="+friendEmail.replaceAll('.','__'),
     success: () =>{
       showNotiBox("Friend request has been sent successfully!");
       clearSearchBox();

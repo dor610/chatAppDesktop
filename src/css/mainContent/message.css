@@ -12,11 +12,14 @@
 }
 
 .message-view {
+  height: 100%;
   max-height: 100%;
   width: calc(100% - 5px);
   bottom: 0;
   overflow: scroll;
   padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .message-view::-webkit-scrollbar {
@@ -45,13 +48,23 @@
   margin-bottom: 5px;
 }
 
+.message-view div img:first-child {
+  display: block;
+}
+
 .message-sent div:last-child {
   font-size: 15px;
   position: relative;
   float: right;
 }
 
-.message-received div:first-child {
+.group-message-received p {
+  color: #024252;
+  display: block;
+  margin-left: 10px;
+}
+
+.message-received div:first-child, .group-message-received div:nth-child(2) {
   overflow-wrap: break-word;
   padding: 15px;
   background-color: rgba(43, 255, 223, 1);
@@ -59,13 +72,17 @@
   border-bottom-left-radius: 0;
 }
 
-.message-received div:last-child {
+.group-message-received img:nth-child(2) {
+  display: block;
+}
+
+.message-received div:last-child, .group-message-received div:last-child {
   font-size: 15px;
   position: relative;
   float: left;
 }
 
-.message-received {
+.message-received, .group-message-received {
   min-width: 100px;
   max-width: 80%;
   max-height: 200px;
@@ -76,13 +93,14 @@
 
 .message-func {
   height: 20px;
-  width: 30%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
 }
 
-.message-func i {
+/*.message-func*/
+.image-form i {
   display: block;
   font-size: 20px;
   height: 20px;
@@ -90,6 +108,25 @@
   width: 30px;
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
+}
+
+.image-form {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  cursor: pointer;
+  transition: 0.5s;
+  display: flex;
+}
+
+.image-form input {}
+
+.image-form button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #8C8B8B;
 }
 
 .message-send {

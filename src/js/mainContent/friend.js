@@ -80,7 +80,7 @@ const opentFriendRequestTab = () =>{
 };
 
 function acceptFriendRequest() {
-  let friendEmail = this.id;
+  let friendEmail = this.id.replaceAll('.','__');
   friendEmail = friendEmail.substring(7, this.id.length);
 
   $.ajax({
@@ -141,6 +141,50 @@ const loadUserFriendRequest = () =>{
   });
 
 };
+
+//recent chats
+const setRecentChat = () =>{
+
+  groupRecentChats.innerHTML = '';
+  friendRecentChats.innerHTML = '';
+
+  user.friendRecentChats.forEach((item, i) => {
+    if(item){
+      console.log("from set friend recent chats: "+item);
+      let divParent = document.createElement('div');
+      let firstChild = document.createElement('div');
+      let lastChild = document.createElement('div');
+
+      divParent.id = item;
+      divParent.addEventListener('click', setFriendRecipientInfo);
+      divParent.addEventListener('click', getPrivateMessage);
+      firstChild.innerHTML = user.friends[item][0].toUpperCase();
+      lastChild.innerHTML = user.friends[item];
+      divParent.appendChild(firstChild);
+      divParent.appendChild(lastChild);
+      friendRecentChats.appendChild(divParent);
+    }
+  });
+
+  user.groupRecentChats.forEach((item, i) => {
+    if(item){
+      console.log("from set group recent chats: "+item);
+      let divParent = document.createElement('div');
+      let firstChild = document.createElement('div');
+      let lastChild = document.createElement('div');
+
+      divParent.id = item;
+      divParent.addEventListener('click', setGroupRecipientInfo);
+      divParent.addEventListener('click', getGroupMessage);
+      firstChild.innerHTML = user.groups[item][0].toUpperCase();
+      lastChild.innerHTML = user.groups[item];
+      divParent.appendChild(firstChild);
+      divParent.appendChild(lastChild);
+      groupRecentChats.appendChild(divParent);
+    }
+  });
+
+}
 
 
 //---------------------

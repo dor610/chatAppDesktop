@@ -61,7 +61,7 @@ const removeDB = () =>{
 function removeUserInfo() {
    var request = db.transaction(["userInfo"], "readwrite")
    .objectStore("userInfo")
-   .delete(email);
+   .delete(user.email);
 
    user.email = '';
    user.userName = '';
@@ -71,6 +71,8 @@ function removeUserInfo() {
    user.friendRequest = '';
    user.gender = '';
    user.age = '';
+   user.friendRecentChats = '';
+   user.groupRecentChats = '';
 
    request.onsuccess = function(event) {
    };
@@ -115,6 +117,9 @@ const getUserInfo = () =>{
       user.friendRequest = data.friendRequest;
       user.gender = data.gender;
       user.age = data.age;
+      console.log("from getUserInfo");
+      user.friendRecentChats = data.friendRecentChats;
+      user.groupRecentChats = data.groupRecentChats;
       closeLoading();
       readUserInfo();
       //webSocket.js
@@ -124,6 +129,7 @@ const getUserInfo = () =>{
 };
 
 const readUserInfo = () =>{
+  console.log("from readUserInfo");
   let userInfo = db.transaction("userInfo").objectStore("userInfo");
   userInfo.openCursor().onsuccess = (event) => {
      let cursor = event.target.result;
@@ -134,6 +140,8 @@ const readUserInfo = () =>{
         setUserProfile();
         //setUserNoti(cursor);
         setUserFriendRequest();
+        getNotification();
+        setRecentChat();
      } else {
         //loginBtn.click();
      }
