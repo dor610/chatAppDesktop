@@ -26,19 +26,22 @@ const readUserInfor = () =>{
     let cursor = event.target.result;
 
     if (cursor) {
-       /*console.log(cursor);
+       console.log(cursor);
        console.log(cursor.value.userName);
-       console.log(cursor.value.userName[0]);*/
-       let oldTimeStamp = cursor.value.oldTimeStamp;
+       console.log(cursor.value.userName[0]);
+       let oldTimeStamp = cursor.value.timeStamp;
+       console.log("oldTimeStamp: "+oldTimeStamp);
        let d = new Date();
        let timeStamp = d.getTime();
-       let distance = oldTimeStamp - timeStamp;
-       if(distance > 1.9*24*60*60*1000){
+       console.log("timeStamp: "+timeStamp);
+       let distance = parseInt(timeStamp) - parseInt(oldTimeStamp);
+       console.log("distance: "+distance);
+       if(distance - 1.9*24*60*60*1000> 1*60*60*1000){
          welcomeBtn.click();
-        homeBtn.click();
-        } else {
+        //homeBtn.click();
+      } else {
        /*console.log(cursor);*/
-        welcomeBtn.click();
+        homeBtn.click();
         }
     }else  welcomeBtn.click();
   }

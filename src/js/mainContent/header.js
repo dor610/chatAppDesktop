@@ -6,8 +6,7 @@ function setFriendRecipientInfo(){
   if(friendEmail.includes('recent_'))
     friendEmail = friendEmail.substring(7, friendEmail.length);
 
-  if(recipientInfo.classList.contains('hide-o'))
-    recipientInfo.classList.remove('hide-o');
+  recipientInfo.classList.remove('hide-o');
 
   recipientAvatar.innerHTML = user.friends[friendEmail][0].toUpperCase();
   recipientName.innerHTML = user.friends[friendEmail];
@@ -25,8 +24,7 @@ function setGroupRecipientInfo(){
   if(groupId.includes('recent_'))
     groupId = groupId.substring(7, groupId.length);
 
-  if(recipientInfo.classList.contains('hide-o'))
-    recipientInfo.classList.remove('hide-o');
+  recipientInfo.classList.remove('hide-o');
 
     recipientAvatar.innerHTML = user.groups[groupId][0].toUpperCase();
     recipientName.innerHTML = '';
