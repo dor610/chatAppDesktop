@@ -170,8 +170,10 @@ const writeToUserInfo = (data) => {
   .objectStore("userInfo");
   console.log("data: "+data);
 //chua xong
+  let d = new Date();
   request.add({email: data.email.replaceAll('.','__'),
-               userName: data.userName});
+               userName: data.userName,
+               timeStamp: d.getTime()});
 
   request.onsuccess = function(event) {
      console.log("User has been added to your database.");

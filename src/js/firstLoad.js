@@ -23,18 +23,25 @@ request.onupgradeneeded = function(event) {
 const readUserInfor = () =>{
   let userInfo = db.transaction("userInfo").objectStore("userInfo");
   userInfo.openCursor().onsuccess = (event) => {
-     let cursor = event.target.result;
+    let cursor = event.target.result;
 
-     if (cursor) {
+    if (cursor) {
        /*console.log(cursor);
        console.log(cursor.value.userName);
        console.log(cursor.value.userName[0]);*/
+       let oldTimeStamp = cursor.value.oldTimeStamp;
+       let d = new Date();
+       let timeStamp = d.getTime();
+       let distance = oldTimeStamp - timeStamp;
+       if(distance > 1.9*24*60*60*1000){
+         welcomeBtn.click();
         homeBtn.click();
-     } else {
+        } else {
        /*console.log(cursor);*/
         welcomeBtn.click();
-     }
-  };
+        }
+    }else  welcomeBtn.click();
+  }
 }
 
 document.onreadystatechange = function() {

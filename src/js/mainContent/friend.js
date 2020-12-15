@@ -106,6 +106,7 @@ const opentFriendRequestTab = () =>{
 function acceptFriendRequest() {
   let friendEmail = this.id.replaceAll('.','__');
   friendEmail = friendEmail.substring(7, this.id.length);
+  openLoading();
 
   $.ajax({
     type: "POST",
@@ -115,9 +116,13 @@ function acceptFriendRequest() {
     success: () =>{
       loadUserFriend();
       loadUserFriendRequest();
+      closeLoading();
       //add notification
     },
-    error: () => console.log('error') //add notification
+    error: () => {
+      console.log('error');
+      closeLoading();
+    } //add notification
   });
 };
 
