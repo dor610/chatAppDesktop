@@ -64,6 +64,7 @@ button {
   border-bottom: 1px solid rgba(230, 230, 230, 1);
   display: flex;
   line-height: 50px;
+  position: relative;
 }
 
 .contact div:hover {
@@ -88,6 +89,16 @@ button {
 .contact div p {
   display: block;
   margin-left: 20px;
+}
+
+.online span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #29D5FF;
+  border-radius: 5px;
+  right: 0;
+  top: 15px;
 }
 
 .other-func {

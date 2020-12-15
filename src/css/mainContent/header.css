@@ -48,7 +48,7 @@
 .recipient-info {
   grid-area: hai;
   height: calc(100% - 5px);
-  width: calc(100% - 5px);
+  width: 100%;
   /*  border: 1px solid lightgray;*/
   background-color: white;
   display: flex;

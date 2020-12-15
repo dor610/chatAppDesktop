@@ -164,7 +164,7 @@ const setUserProfile = () =>{
 editForm.addEventListener('submit', e =>{
   e.preventDefault();
 
-  showConfirmBox("Save changes?", () =>{
+  showConfirmBox("Edit User's Profile","Save changes?", () =>{
     $.ajax({
       type: "PUT",
       url: "https://secret-brook-88276.herokuapp.com/app/users/edit",
@@ -178,7 +178,7 @@ editForm.addEventListener('submit', e =>{
           readUserInfo();
         },2000);
         setTimeout(()=>{
-          showNotiBox("Your profile war updated!");
+          showNotiBox('Account',"Your profile war updated!", true);
           closeEditProfile();
           openUserProfile();
           newUserName.value = '';
@@ -187,7 +187,7 @@ editForm.addEventListener('submit', e =>{
         }, 2500);
       },
       error: () =>{
-        showNotiBox("Some error has occurred!")
+        showNotiBox('Account',"Some error has occurred!", true, true);
         console.log("edit error!");
       }
     });
@@ -198,20 +198,20 @@ editForm.addEventListener('submit', e =>{
 });
 
 deleteAccountBtn.addEventListener('click', () =>{
-  showConfirmBox("Are you sure you want to delete your account?", () =>{
+  showConfirmBox("Delete Account","Are you sure you want to delete your account?", () =>{
     $.ajax({
       type: "DELETE",
       url: "https://secret-brook-88276.herokuapp.com/app/users/delete",
       headers: {email: user.email},
       success: () =>{
-        showNotiBox("Your account has been deleted!");
+        showNotiBox("Account","Your account has been deleted!", true);
         removeUserInfo();
         setTimeout(() =>{
           loginBtn.click();
         }, 3000);
       },
       error: () =>{
-        showNotiBox("Some error has occurred!");
+        showNotiBox("Account","Some error has occurred!", true, true);
       }
     });
     confirmValue = false;

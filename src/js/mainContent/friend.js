@@ -7,7 +7,8 @@ const friendRequestBtn = document.getElementById('friend-request-btn');
 const setUserFriends = () =>{
 
   let userFriendEmail = Object.keys(user.friends);
-  friendsContent.innerHTML = '';
+  onlineFriend.innerHTML = '';
+  offlineFriend.innerHTML = '';
 
   userFriendEmail.forEach((item, i) => {
     let divParent = document.createElement('div');
@@ -18,14 +19,37 @@ const setUserFriends = () =>{
     divChild.innerHTML = user.friends[item][0].toUpperCase();
     let pChild = document.createElement('p');
     pChild.innerHTML = user.friends[item];
+    let span = document.createElement('span');
+    span.title = 'Online';
 
     divParent.appendChild(divChild);
+    divParent.appendChild(span);
     divParent.appendChild(pChild);
-    friendsContent.appendChild(divParent);
+    if(onlineUser.indexOf(item) >= 0){
+      divParent.classList.add('online');
+      onlineFriend.appendChild(divParent);
+    }
+    else offlineFriend.appendChild(divParent);
   });
 };
 
-const setUserFriendRequest = (cursor) =>{
+const setOnlineFriend = (email) =>{
+  let friend = document.getElementById(email);
+  friend.classList.add('online');
+
+  offlineFriend.removeChild(friend);
+  onlineFriend.appendChild(friend);
+}
+
+const setOfflineFriend = (email) =>{
+  let friend = document.getElementById(email);
+  friend.classList.remove('online');
+
+  onlineFriend.removeChild(friend);
+  offlineFriend.appendChild(friend);
+}
+
+const setUserFriendRequest = () =>{
   let userFriendRequest = user.receivedFriendRequest;
   let userFriendRequestEmail = Object.keys(userFriendRequest);
 
@@ -154,14 +178,19 @@ const setRecentChat = () =>{
       let divParent = document.createElement('div');
       let firstChild = document.createElement('div');
       let lastChild = document.createElement('div');
+      let span = document.createElement('span');
+      span.title = 'Online';
 
-      divParent.id = item;
+      divParent.id = 'recent_'+item;
       divParent.addEventListener('click', setFriendRecipientInfo);
       divParent.addEventListener('click', getPrivateMessage);
       firstChild.innerHTML = user.friends[item][0].toUpperCase();
       lastChild.innerHTML = user.friends[item];
       divParent.appendChild(firstChild);
+      divParent.appendChild(span);
       divParent.appendChild(lastChild);
+      if(onlineUser.indexOf(item) >= 0)
+        divParent.classList.add('online');
       friendRecentChats.appendChild(divParent);
     }
   });
@@ -183,6 +212,37 @@ const setRecentChat = () =>{
       groupRecentChats.appendChild(divParent);
     }
   });
+
+  const getUserFriend = () =>{
+
+    $.ajax({
+      type: "GET",
+      url: "https://secret-brook-88276.herokuapp.com/app/friends",
+      headers: {email: user.email},
+      success: (data) =>{
+        user.friends = data;
+        setUserFriends();
+      },
+      error: () =>{
+        console.log("Some error occurred when getting user's friend");
+      }
+    });
+  }
+
+  const getFriendRequest = () =>{
+    $.ajax({
+      type: "GET",
+      url: "https://secret-brook-88276.herokuapp.com/app/friends/received",
+      headers: {email: user.email},
+      success: (data) =>{
+        user.receivedFriendRequest = data;
+        setUserFriendRequest();
+      },
+      error: () =>{
+        console.log("Some error has occurred when getting friend request");
+      }
+    });
+  }
 
 }
 

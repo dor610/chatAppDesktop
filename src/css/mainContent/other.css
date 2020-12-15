@@ -169,12 +169,11 @@
 
 .create-group-tab, .setting-tab, .group-info-tab {
   position: absolute;
-  width: 80%;
-  height: 80vh;
+  width: 100%;
+  height: calc(100vh - 145px);
   z-index: 1;
   background-color: white;
   border: 1px solid rgba(230, 230, 230, 1);
-  margin-left: 10%;
   display: grid;
   grid-template-columns: 150px calc(100% - 150px);
   grid-template-areas: 'mot hai';

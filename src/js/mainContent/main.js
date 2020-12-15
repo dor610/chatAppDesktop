@@ -15,8 +15,6 @@ const userName = document.getElementById('user-name');
 const loginBtn = document.getElementById('login');
 const loading = document.getElementById('loading-box');
 
-const friendsContent = document.getElementById('friends-content');
-
 //header.js
 const recipientInfo = document.getElementById('recipient-info');
 const recipientAvatar = document.getElementById('recipient-avatar-letter');
@@ -35,6 +33,13 @@ const groupInfoContent = document.getElementById('group-info-content');
 const groupMemberContent = document.getElementById('group-member-content');
 const addGroupMemberContent = document.getElementById('add-group-member-content');
 const groupOtherContent = document.getElementById('group-other-content');
+
+
+//friend
+const friendsContent = document.getElementById('friends-content');
+const onlineFriend = document.getElementById('online-friend');
+const offlineFriend = document.getElementById('offline-friend');
+
 
 //message
 const chatArea = document.getElementById('chat-area')
@@ -95,9 +100,11 @@ const deleteAccountBtn = document.getElementById('delete-account');
 const notiContent = document.getElementById('noti-content');
 
 const notiBox = document.getElementById('notification-box');
+const notiTitle = document.getElementById('notification-title');
 const notiMessage = document.getElementById('notification-message');
 
 const confirmBox = document.getElementById('confirm-box');
+const confirmTitle = document.getElementById('confirm-title');
 const confirmMessage = document.getElementById('confirm-message');
 const confirmedBtn = document.getElementById('confirmed-btn');
 const cancelConfirm = document.getElementById('cancel-confirm-btn');
@@ -110,6 +117,9 @@ const recentChatContent = document.getElementById('recent-chat-content');
 const friendRecentChats = document.getElementById('friend-recent-chat');
 const groupRecentChats = document.getElementById('group-recent-chat');
 
+
+let onlineUser = '';
+
 const user = {
   email: '',
   userName: '',
@@ -121,7 +131,9 @@ const user = {
   age: '',
   friendRecentChats: '',
   groupRecentChats: ''
-}
+};
+
+const userGroupMember = {};
 
 const currentGroup = {
   groupId: '',
@@ -148,5 +160,6 @@ const messageType = {
   acceptFriendRequest: 'AcceptFriendRequest',
   friendRequest: 'FriendRequest',
   image: 'Image',
-  text: 'Text'
+  text: 'Text',
+  newGroup: 'NewGroup'
 };

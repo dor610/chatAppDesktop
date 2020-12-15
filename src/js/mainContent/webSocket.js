@@ -11,19 +11,59 @@ const connect = ()  => {
 
 function onConnected() {
     // Subscribe to the Public Topic
-  stompClient.subscribe('/user/queue/newMember',  (data) => console.log(data));
+  stompClient.subscribe('/user/queue/newMember',  (data) =>{
+    onlineUser = data.body.slice(1, data.body.length-1).split(',');
+    //console.log(Array.isArray(onlineUser));
+    onlineUser.forEach((item, i) => {
+      item = item.slice(1,item.length - 1);
+      onlineUser[i] = item;
+      //console.log(user.friends[item]);
 
- stompClient.subscribe('/topic/newMember', data => console.log("data: " + data.body));
+      if(user.friends[item]){
+        setOnlineFriend(item);
+      }
+    });
 
+    setRecentChat();
+
+  });
+
+  stompClient.subscribe('/topic/newMember', data =>{
+    let friend = data.body
+    console.log(friend);
+    if(onlineUser.indexOf(friend) === -1)
+      onlineUser.push(friend);
+    if(user.friends[friend]){
+      setOnlineFriend(friend);
+      let chatId = getPrivateChatId(user.email, friend);
+      let messageView = document.getElementById(chatId);
+      if(!messageView || messageView.classList.contains('hide-d')){
+        showNotiBox('Friend','Your friend, '+user.friends[friend]+ " is online", true);
+      }
+    }
+  });
+
+  stompClient.subscribe('/topic/disconnect', data =>{
+    let friend = data.body;
+      if(user.friends[friend]){
+        setOfflineFriend(friend);
+        let chatId = getPrivateChatId(user.email, friend);
+        let messageView = document.getElementById(chatId);
+        setRecentChat();
+        onlineUser.splice(onlineUser.indexOf(friend), 1);
+        if(!messageView || messageView.classList.contains('hide-d')){
+          //showNotiBox('Friend',user.friend[data]+ " is online");
+        }
+      }
+  });
 
 
     // Tell your username to the server
   sendMessage('/app/register', user.email);
 
   stompClient.subscribe(`/user/${user.email}/msg`,  data =>{
-    console.log(`-------- received message:\n`+ data.body+`\n--------received message!!!!`);
+    //console.log(`-------- received message:\n`+ data.body+`\n--------received message!!!!`);
     processArrivingMessage(data.body);
-    //displayMessage(data);
   });
 
 
@@ -35,13 +75,6 @@ function onError(error) {
 
 function sendMessage(url, message) {
     stompClient.send(url, {}, message);
-}
-
-
-const displayMessage = data =>{
-let mess = JSON.parse(data.body);
-console.log(" jhdsjfldsk:  "+mess);
-//receive.innerHTML = `from: `+mess.sender+`\n message: `+ mess.message+"\n to: "+mess.recipient;
 }
 
 //display group messageType
@@ -63,7 +96,7 @@ const sendGroupMessage = (message) =>{
       messageType: messageType.text,
       message: message
     }));
-    displaySentGroupMessage(message);
+    //displaySentGroupMessage(message);
   }
 };
 
@@ -77,9 +110,6 @@ const sendPrivateMessage = (message) =>{
       messageType: messageType.text,
       message: message
     }));
-    displaySentPrivateMessage(message);
+    //displaySentPrivateMessage(message);
   }
 };
-
-
-//logout.addEventListener('click', onDisconnect);

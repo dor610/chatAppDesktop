@@ -1,6 +1,6 @@
 .notification-box, .confirm-box {
   position: absolute;
-  width: 350px;
+  max-width: 350px;
   min-height: 100px;
   height: auto;
   background-color: white;
@@ -14,18 +14,34 @@
   font-size: 20px;
 }
 
+.notification-box div {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .confirm-box {
   display: grid;
-  grid-template-rows: auto 40px;
+  grid-template-rows: 20px auto 40px;
+  grid-template-rows: 'mot''hai''ba';
+}
+
+.confirm-title {
+  grid: mot;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .confirm-message {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  grid: hai;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .confirm-btn {
+  grid: ba;
   display: flex;
   position: relative;
 }
@@ -39,17 +55,42 @@
   outline: none;
   border: none;
   color: white;
-  background-image: linear-gradient(to left, #29D5FF, #29FFDF);
+  border-radius: 10px;
+  background-color: #29FFDF;
+}
+
+.notification-title, .confirm-title {
+  padding-top: 10px;
+  color: #29D5FF;
 }
 
 .notification-message {
   width: 350px;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
-  text-align: center;
+  font-size: 18px;
+}
+
+.small-noti {
+  max-width: 280px;
+  left: calc(50% - 140px);
+}
+
+.small-noti div:last-child {
+  width: 280px;
+}
+
+.error-noti div:first-child {
+  color: rgba(230, 50, 50, 1);
 }
 
 .noti-tab {}
+
+.noti-content {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column-reverse;
+}
 
 .noti-content div {
   display: flex;

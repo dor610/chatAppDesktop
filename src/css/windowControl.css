@@ -18,7 +18,7 @@ body {
   grid-template-columns: 30px 90px auto 130px;
   grid-template-areas: "logo name blank controller";
   width: 100%;
-  height: 40px;
+  height: 20px;
   align-items: center;
   font-size: 18px;
   text-align: center;
@@ -26,6 +26,7 @@ body {
   -webkit-app-region: drag;
   -webkit-user-select: none;
   border-bottom: 1px solid #EBEBEB;
+  overflow: visible;
 }
 
 .title-bar-logo {

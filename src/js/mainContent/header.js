@@ -1,6 +1,11 @@
 function setFriendRecipientInfo(){
   let friendEmail = this.id;
 
+  if(friendEmail.includes('search_'))
+    friendEmail = friendEmail.substring(7, friendEmail.length)
+  if(friendEmail.includes('recent_'))
+    friendEmail = friendEmail.substring(7, friendEmail.length);
+
   if(recipientInfo.classList.contains('hide-o'))
     recipientInfo.classList.remove('hide-o');
 
@@ -14,6 +19,11 @@ function setFriendRecipientInfo(){
 
 function setGroupRecipientInfo(){
   let groupId = this.id;
+
+  if(groupId.includes('search_'))
+    groupId = groupId.substring(7, groupId.length)
+  if(groupId.includes('recent_'))
+    groupId = groupId.substring(7, groupId.length);
 
   if(recipientInfo.classList.contains('hide-o'))
     recipientInfo.classList.remove('hide-o');

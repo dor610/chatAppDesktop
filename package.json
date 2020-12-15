@@ -1,6 +1,6 @@
 {
   "name": "chatapp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "chatApp",
   "main": "src/index.js",
   "scripts": {
@@ -15,6 +15,9 @@
     "electron": "10.1.2",
     "electron-builder": "^22.9.1"
   },
-  "author": "",
+  "author": {
+    "name": "Khang",
+    "email": "khangb1805770@student.ctu.edu.vn"
+  },
   "license": "ISC"
 }

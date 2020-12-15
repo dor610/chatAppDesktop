@@ -5,9 +5,18 @@ function openGroupMessageTab(){
 
 function getGroupMessage(){
   let groupId = this.id;
-//  console.log("groupId: "+groupId);
+
+  if(groupId.includes('search_'))
+    groupId = groupId.substring(7, groupId.length)
+  if(groupId.includes('recent_'))
+    groupId = groupId.substring(7, groupId.length);
+
   chatArea.classList.remove('hide-d');
   welcomeBox.classList.add('hide-d');
+
+  if(currentRecipient.chatId && currentRecipient.chatId !== 'message_'+groupId)
+    document.getElementById(currentRecipient.chatId).classList.add('hide-d');
+
   let chatBox = document.getElementById('message_'+groupId);
 
   if(!chatBox){
@@ -23,6 +32,7 @@ function getGroupMessage(){
       error: () => console.log('some errors occurred when getting group messages!')
     });
   }else{
+    if(currentRecipient.chatId)
     document.getElementById(currentRecipient.chatId).classList.add('hide-d');
     chatBox.classList.remove('hide-d');
     currentRecipient.chatId = 'message_'+groupId;
@@ -31,12 +41,18 @@ function getGroupMessage(){
 
 function getPrivateMessage(){
   let recipient = this.id;
+  if(recipient.includes('search_'))
+    recipient = recipient.substring(7, recipient.length)
+  if(recipient.includes('recent_'))
+    recipient = recipient.substring(7, recipient.length);
+
   let chatId = getPrivateChatId(user.email, recipient);
   let chatBox = document.getElementById(chatId);
 
   chatArea.classList.remove('hide-d');
   welcomeBox.classList.add('hide-d');
-
+  if(currentRecipient.chatId && currentRecipient.chatId !== chatId)
+    document.getElementById(currentRecipient.chatId).classList.add('hide-d');
   if(!chatBox){
     $.ajax({
       type: "GET",
@@ -50,6 +66,7 @@ function getPrivateMessage(){
       error: () => console.log('some errors is occurred when getting your messages!')
     });
   }else {
+    if(currentRecipient.chatId)
     document.getElementById(currentRecipient.chatId).classList.add('hide-d');
     chatBox.classList.remove('hide-d');
     currentRecipient.chatId = chatId;
@@ -105,12 +122,9 @@ const displayPrivateMessage = (data) =>{
 
   const displayGroupMessage = (data) =>{
 
-    if(document.getElementById(currentRecipient.chatId))
-      document.getElementById(currentRecipient.chatId).classList.add('hide-d');
-
     if(data[0]){
       currentRecipient.chatId = 'message_'+data[0].groupId;
-      console.log("data[0].groupId:  "+data[0].groupid);
+      console.log("data[0].groupId:  "+data[0].groupId);
       if(document.getElementById(data[0].chatId) === null){
         let messageView = document.createElement('div');
         messageView.classList.add("message-view");
@@ -131,7 +145,10 @@ const displayPrivateMessage = (data) =>{
             else {
               divParent.classList.add('group-message-received');
               let firstChild = document.createElement('p');
-              firstChild.innerHTML = item.sender;
+              //console.log(item.groupId+"-----"+item.sender);
+              if(userGroupMember[item.groupId][item.sender])
+                firstChild.innerHTML = userGroupMember[item.groupId][item.sender];
+              else firstChild.innerHTML = data.sender.replaceAll('__', '.');
               divParent.appendChild(firstChild);
             }
             secondChild.innerHTML = item.message;
@@ -147,7 +164,8 @@ const displayPrivateMessage = (data) =>{
         messageContainer.appendChild(messageView);
         messageView.scrollTop = messageView.scrollHeight;
       }
-      document.getElementById(currentRecipient.chatId).classList.remove('hide-d');
+      if(currentRecipient.chatId === data.chatId)
+        document.getElementById(currentRecipient.chatId).classList.remove('hide-d');
     }
 }
 
@@ -164,13 +182,13 @@ const processArrivingMessage = (dataString) =>{
   console.log("-----\n"+dataString+"\n-------");
   let data = JSON.parse(dataString);
     switch (data.type) {
-      case 'PrivateMessage':
+      case type.private:
         displayNewPrivateMessage(data);
         break;
-      case 'GroupMessage':
-        displayGroupMessage(data);
+      case type.group:
+        displayNewGroupMessage(data);
         break;
-      case 'Notification':
+      case type.notification:
         displayNewNotification(data);
         break;
       default:
@@ -182,20 +200,22 @@ const displayNewGroupMessage = (data) =>{
   let chatId = "message_"+data.groupId;
   let messageView = document.getElementById(chatId);
 
-  if(!messageView){
-    messageView = document.createElement('div');
-    messageView.id = chatId;
-    messageView.classList.add('message-view');
-    messageView.classList.add('hide-d');
-    messageContainer.appendChild(messageView);
-  }
-
-  let divParent = createElement('div');
+  if(messageView){
+  let divParent = document.createElement('div');
+  let p = document.createElement('p');
   let firstChild = document.createElement('div');
   let lastChild = document.createElement('div');
 
   divParent.id = data.messageId;
-  divParent.classList.add('message-received');
+  if(data.sender === user.email)
+    divParent.classList.add('message-sent');
+  else {
+    divParent.classList.add('group-message-received');
+    if(userGroupMember[data.groupId][data.sender])
+      p.innerHTML = userGroupMember[data.groupId][data.sender];
+    else p.innerHTML = data.sender.replaceAll('__', '.');
+    divParent.appendChild(p);
+  }
   firstChild.innerHTML = data.message;
   lastChild.innerHTML = getTime(data.timeStamp);
 
@@ -204,40 +224,58 @@ const displayNewGroupMessage = (data) =>{
 
   messageView.appendChild(divParent);
   messageView.scrollTop = messageView.scrollHeight;
+  if(currentRecipient.chatId === chatId){
+    divParent.classList.add('new-arriving-message');
+    setTimeout(() => {
+      document.getElementById(data.messageId).classList.remove('new-arriving-message');
+    },2000);
+  }
+  }
+  if(currentRecipient.chatId !== chatId)
+    showNotiBox('Message','New message from '+user.friends[data.sender]+" in "+user.groups[data.groupId]);
 }
 
 const displayNewPrivateMessage = (data) =>{
   let chatId = data.chatId;
   let messageView = document.getElementById(chatId);
-  let divParent;
-  if(!messageView){
-    messageView = document.createElement('div');
-    messageView.id = chatId;
-    messageView.classList.add('message-view');
-    messageView.classList.add('hide-d');
-    messageContainer.appendChild(messageView);
-  }
-  if(data.mesType === messageType.image){
-    divParent = processImageMessage(data);
+
+  if(messageView){
+    if(data.mesType === messageType.image){
+    let divParent = processImageMessage(data);
+    messageView.appendChild(divParent);
   }else{
-    divParent = document.createElement('div');
+    let divParent = document.createElement('div');
     let firstChild = document.createElement('div');
     let lastChild = document.createElement('div');
 
     divParent.id = data.messageId;
-    divParent.classList.add('message-received');
+    if(data.sender === user.email){
+    divParent.classList.add('message-sent');
+    }
+    else{
+      divParent.classList.add('message-received');
+    }
     firstChild.innerHTML = data.message;
     lastChild.innerHTML = getTime(data.timeStamp);
 
     divParent.appendChild(firstChild);
     divParent.appendChild(lastChild);
+    messageView.appendChild(divParent);
   }
-
-  messageView.appendChild(divParent);
   messageView.scrollTop = messageView.scrollHeight;
+  if(currentRecipient.chatId === chatId){
+    document.getElementById(data.messageId).classList.add('new-arriving-message');
+    setTimeout(() => {
+      document.getElementById(data.messageId).classList.remove('new-arriving-message');
+    },2000);
+  }
+  }
+  if(currentRecipient.chatId !== chatId)
+    showNotiBox('Message','New message from '+user.friends[data.sender]);
 }
 
-const displaySentGroupMessage = (message) =>{
+/*const displaySentGroupMessage = (message) =>{
+console.log("display sent message");
   let chatId = 'message_'+currentRecipient.id;
   let messageView = document.getElementById(chatId);
   if(!messageView){
@@ -262,9 +300,9 @@ const displaySentGroupMessage = (message) =>{
 
   messageView.appendChild(divParent);
   messageView.scrollTop = messageView.scrollHeight;
-}
+}*/
 
-const displaySentPrivateMessage = (message) =>{
+/*const displaySentPrivateMessage = (message) =>{
   let chatId = getPrivateChatId(user.email, currentRecipient.id);
   let messageView = document.getElementById(chatId);
   if(!messageView){
@@ -288,7 +326,7 @@ const displaySentPrivateMessage = (message) =>{
 
   messageView.appendChild(divParent);
   messageView.scrollTop = messageView.scrollHeight;
-}
+}*/
 
 messageForm.addEventListener('submit', event =>{
   event.preventDefault();
@@ -326,7 +364,7 @@ const processImageMessage = (mes) =>{
   return divParent;
 }
 
-const displaySentImageMessage = (mes) =>{
+/*const displaySentImageMessage = (mes) =>{
   let messageView = document.getElementById(currentRecipient.chatId);
   if(messageView){
     let img = document.createElement('img');
@@ -342,7 +380,7 @@ const displaySentImageMessage = (mes) =>{
     divParent.appendChild(lastChild);
     messageView.appendChild(divParent);
   }
-}
+}*/
 
 const sendImageMessage = (event) =>{
   event.preventDefault();
@@ -367,7 +405,8 @@ const sendImageMessage = (event) =>{
         cache: false,
         timeout: 1000000,
         success: function(data, textStatus, jqXHR) {
-          displaySentImageMessage(data);
+          //displaySentImageMessage(data);
+          console.log("image sent");
         },
         error: function(jqXHR, textStatus, errorThrown) {
           console.log("lỗi rồi bà con ơi!!");

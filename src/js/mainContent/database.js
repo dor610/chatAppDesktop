@@ -82,8 +82,8 @@ const writeUserInfoToDB = (data) => {
   let request = db.transaction(["userInfo"], "readwrite")
   .objectStore("userInfo");
 //chua xong
-console.log('email: '+data.email);
-console.log('userName: '+data.userName);
+  console.log('email: '+data.email);
+  console.log('userName: '+data.userName);
   request.add({email: data.email,
                userName: data.userName});
 
@@ -134,6 +134,7 @@ const readUserInfo = () =>{
   userInfo.openCursor().onsuccess = (event) => {
      let cursor = event.target.result;
      if (cursor) {
+        getGroupMember();
         setUserInfo();
         setUserGroups();
         setUserFriends();

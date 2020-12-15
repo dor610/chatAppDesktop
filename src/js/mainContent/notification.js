@@ -3,15 +3,23 @@ notiBtn.addEventListener('click', () =>{
   openNotiTab();
 });
 
-const showNotiBox = (message) =>{
+const showNotiBox = (title,message, isSmall, isError) =>{
+  notiTitle.innerHTML = title;
   notiMessage.innerHTML = message;
+  if(isSmall)
+    notiBox.classList.add('small-noti');
+  if(isError)
+    notiBox.classList.add('error-noti');
   notiBox.classList.remove('hide-top');
   setTimeout(() =>{
     notiBox.classList.add('hide-top');
+    notiBox.classList.remove('small-noti');
+    notiBox.classList.remove('error-noti');
   },3000);
 };
 
-const showConfirmBox = (message, confirm, cancel) =>{
+const showConfirmBox = (title, message, confirm, cancel) =>{
+  confirmTitle.innerHTML = title;
   confirmMessage.innerHTML= message;
   confirmBox.classList.remove('hide-top');
   $('#confirmed-btn').one("click", confirm);
@@ -77,7 +85,24 @@ const setNewNotification = noti =>{
 }
 
 const displayNewNotification = noti =>{
-  showNotiBox(noti.message);
-  setNewNotification(noti);
+  switch (noti.notiType) {
+    case messageType.acceptFriendRequest:
+        getFriend();
+        showNotiBox('Friend',noti.message, true, false);
+        setNewNotification(noti);
+      break;
+    case messageType.newGroup:
+        getGroup();
+        showNotiBox('Group',noti.message, true, false);
+        setNewNotification(noti);
+      break;
+    case messageType.friendRequest:
+        getFriendRequest();
+        showNotiBox('Friend',noti.message, true, false);
+        setNewNotification(noti);
+      break;
+    default:
+      console.log("just a notification");
+  }
   console.log("received a new notification");
 }

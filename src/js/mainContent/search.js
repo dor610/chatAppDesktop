@@ -21,15 +21,20 @@ searchKeyWord.addEventListener('input', () =>{
         let divParent = document.createElement('div');
         let firstChild = document.createElement('div');
         let lastChild = document.createElement('div');
-        divParent.id = item;
+        let span = document.createElement('span');
+        span.title = 'Online';
+        divParent.id = 'search_'+item;
 
         firstChild.innerHTML = user.friends[item][0].toUpperCase();
         lastChild.innerHTML = user.friends[item];
 
         divParent.appendChild(firstChild);
+        divParent.appendChild(span);
         divParent.appendChild(lastChild);
         divParent.addEventListener('click', getPrivateMessage);
         divParent.addEventListener('click', setFriendRecipientInfo);
+        if(onlineUser.indexOf(item) >= 0)
+          divParent.classList.add('online');
         friendSearchResult.appendChild(divParent);
       }
     });
@@ -42,6 +47,9 @@ searchKeyWord.addEventListener('input', () =>{
 
         firstChild.innerHTML = user.groups[item][0].toUpperCase();
         lastChild.innerHTML = user.groups[item];
+        divParent.id = 'search_'+item;
+        divParent.addEventListener('click', getGroupMessage);
+        divParent.addEventListener('click', setGroupRecipientInfo);
 
         divParent.appendChild(firstChild);
         divParent.appendChild(lastChild);
@@ -136,11 +144,11 @@ function sendFriendRequest(){
     headers: {email: user.email.replaceAll('.', '__')},
     data: "friendEmail="+friendEmail.replaceAll('.','__'),
     success: () =>{
-      showNotiBox("Friend request has been sent successfully!");
+      showNotiBox('Friend',"Friend request has been sent successfully!");
       clearSearchBox();
     },
     error: () =>{
-      showNotiBox("Some error has orrcured. Please try again!");
+      showNotiBox('Friend',"Some error has orrcured. Please try again!", false, true);
     }
   })
 

@@ -160,7 +160,7 @@ const setAddGroupMemberFromFriend = () =>{
 function removeGroupMember() {
   let memberEmail = this.id.substring(7, this.id.length);
   currentGroup.removedMember = memberEmail;
-  showConfirmBox("Are you sure you want to remove "+currentGroup.members[memberEmail]+" from "+currentGroup.groupName+"?",
+  showConfirmBox("Remove Group's Member","Are you sure you want to remove "+currentGroup.members[memberEmail]+" from "+currentGroup.groupName+"?",
                   ()=>{
                     $.ajax({
                       type: "DELETE",
@@ -168,7 +168,7 @@ function removeGroupMember() {
                       headers: {email: user.email},
                       data: 'groupId='+currentGroup.groupId+"&member="+currentGroup.removedMember,
                       success: () =>{
-                        showNotiBox(currentGroup.members[currentGroup.removedMember]+" has been removed from "+currentGroup.groupName+"!");
+                        showNotiBox('Group',currentGroup.members[currentGroup.removedMember]+" has been removed from "+currentGroup.groupName+"!");
                         loadGroupMember();
                       }
                     });
@@ -369,7 +369,7 @@ const loadUserGroup = () =>{
 }
 
 const leaveGroup = () =>{
-  showConfirmBox("Are you sure you want to leave "+currentGroup.groupName+"?",
+  showConfirmBox("Leave Group","Are you sure you want to leave "+currentGroup.groupName+"?",
                 ()=>{
                   $.ajax({
                     type: "POST",
@@ -379,7 +379,7 @@ const leaveGroup = () =>{
                     success: (data) =>{
                       console.log(data);
                       loadUserGroup();
-                      showNotiBox("You has left "+currentGroup.groupName+"!");
+                      showNotiBox('Group',"You has left "+currentGroup.groupName+"!", true);
                       closeGroupInfoTab();
                     },
                     error: () => console.log('error'),
@@ -392,7 +392,7 @@ const leaveGroup = () =>{
 
 const deleteGroup = () =>{
   if(user.email === currentGroup.admin){
-    showConfirmBox("Are you sure you want to delete this group?",
+    showConfirmBox("Delete Group","Are you sure you want to delete this group?",
                   () =>{
                     $.ajax({
                       type: "DELETE",
@@ -402,7 +402,7 @@ const deleteGroup = () =>{
                       success: (data) =>{
                         console.log(data);
                         loadUserGroup();
-                        showNotiBox(currentGroup.groupName+" has been deleted!");
+                        showNotiBox('Group',currentGroup.groupName+" has been deleted!",true);
                         closeGroupInfoTab();
                       }
                     });
@@ -414,6 +414,41 @@ const deleteGroup = () =>{
     //hiện thông báo
     console.log('access denied!');
   }
+}
+
+const getGroup = () =>{
+  $.ajax({
+    type: 'GET',
+    url: 'https://secret-brook-88276.herokuapp.com/app/groups',
+    headers: {email: user.email},
+    success: (data) =>{
+      user.groups = data;
+      setUserGroups();
+    },
+    error: () =>{
+      console.log("Some error has occurred when getting user's group");
+    }
+  });
+}
+
+const getGroupMember = () =>{
+  let groupIds = Object.keys(user.groups);
+
+  groupIds.forEach((item, i) => {
+    $.ajax({
+      type: "GET",
+      url: 'https://secret-brook-88276.herokuapp.com/groups/members/'+item,
+      success: (data) =>{
+        //console.log(item);
+        userGroupMember[item] = data;
+        //console.log(userGroupMember[item]);
+      },
+      error: () =>{
+        console.log('Could not get ' + item + ' information!');
+      }
+    });
+  });
+
 }
 //-------------------
 groupsBtn.addEventListener('click', () =>{

@@ -22,7 +22,7 @@
 <body>
 
   <div id="title-bar" class="title-bar">
-    <div id="title-bar-controller" class="title-bar-controller">
+    <div id="title-bar-controller" class="title-bar-controller small">
       <i id="minimize" class="fas fa-minus"></i>
       <i id="expand" class="fas fa-expand"></i>
       <i id="close" class="fas fa-times"></i>
@@ -30,11 +30,13 @@
   </div>
 
   <div id="notification-box" class="notification-box hide-top">
-    <div id="notification-message" class="notification-message"></div>
+    <div id="notification-title" class="notification-title">New notification</div>
+    <div id="notification-message" class="notification-message">Your friend, tester1 is online</div>
   </div>
 
   <div id="confirm-box" class="confirm-box hide-top">
-    <div id="confirm-message" class="confirm-message">asdas asdas asdas asdasd asdasd asdasd asdas sdasd asdsddsadas adasd</div>
+    <div id="confirm-title" class="confirm-title">Confirm title</div>
+    <div id="confirm-message" class="confirm-message">fsdfsdfdfsdfsdsdfsdAre you sure you want to do something</div>
     <div id="confirm-btn" class="confirm-btn">
       <button id="confirmed-btn" class="confirmed-btn">Yes</button>
       <button id="cancel-confirm-btn" class="cancel-confirm-btn">No</button>
@@ -55,7 +57,7 @@
       <div id="user-avatar" class="user-avatar"></div>
       <div id="user-name" class="user-name"></div>
     </div>
-    <div id="recipient-info" class="recipient-info hide-o">
+    <div id="recipient-info" class="recipient-info">
       <div id="recipient-avatar-letter" class="user-avatar-letter">T</div>
       <div id="recipient-avatar" class="user-avatar"></div>
       <div id="recipient-name" class="user-name">Tester</div>
@@ -96,7 +98,21 @@
       <div id="friends-tab" class="friends-tab hide-d">
         <div class="title">Friends</div>
         <div id="friend-request-btn" class="friend-request" title="Friend requests"><i class="fas fa-user-plus"></i></div>
-        <div id="friends-content" class="friends-content contact">
+        <div id="friends-content" class="friends-content">
+          <div id="online-friend" class="contact">
+            <!--<div class="online">
+              <div>A</div>
+              <span title="Online"></span>
+              <p>Aasdasdasdad</p>
+            </div>-->
+          </div>
+          <div id="offline-friend" class="contact">
+            <!--<div>
+              <div>A</div>
+              <span title="Online"></span>
+              <p>Aasdasdasdad</p>
+            </div>-->
+          </div>
         </div>
       </div>
 
@@ -118,9 +134,7 @@
       <div id="groups-tab" class="groups-tab hide-d">
         <div class="title">Groups</div>
         <div id="create-group" class="create-group" title="Create new group">+</div>
-        <div id="groups-content" class="contact groups-content">
-
-        </div>
+        <div id="groups-content" class="contact groups-content"></div>
       </div>
 
       <div id="noti-tab" class="noti-tab hide-d">
@@ -128,37 +142,19 @@
         <div id="noti-content" class="noti-content">
         </div>
       </div>
-
-      <div id="recent-chat" class="recent-chat">
-        <div class="title">Recent chats</div>
-        <div id="recent-chat-content" class="recent-chat-content">
-          <p>Friends</p>
-          <div id="friend-recent-chat" class="friend-recent-chat">
-            <div>
-              <div>G</div>
-              <div>Group Tester</div>
-            </div>
-            <div>
-              <div>G</div>
-              <div>Group Tester</div>
-            </div>
-          </div>
-          <p>Groups</p>
-          <div id="group-recent-chat" class="group-recent-chat">
-            <div>
-              <div>G</div>
-              <div>Group Tester</div>
-            </div>
-            <div>
-              <div>G</div>
-              <div>Group Tester</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
 
+    <div id="recent-chat" class="recent-chat">
+      <div class="title">Recent chats</div>
+      <div id="recent-chat-content" class="recent-chat-content">
+        <p>Friends</p>
+        <div id="friend-recent-chat" class="friend-recent-chat">
+        </div>
+        <p>Groups</p>
+        <div id="group-recent-chat" class="group-recent-chat">
+        </div>
+      </div>
+    </div>
 
     <div id="welcome-box" class="welcome-box">
       <div>Welcome to chatApp</div>
@@ -167,7 +163,6 @@
       <div>Your can find your groups in "Groups" tab.</div>
       <div>Use "Search" to find your friend/group by email/groupId.</div>
     </div>
-
 
     <div id="chat-area" class="chat-area hide-d">
       <div id="message-view-container" class="message-view-container">
@@ -185,9 +180,21 @@
             <div>ba</div>
             <div>10:23AM, 20/11/2020</div>
           </div>
+          <div class="message-received">
+            <img src="../statics/img/panda.jpg">
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+          <div class="message-sent">
+            <div>sau</div>
+            <div>10:24AM, 20/11/2020</div>
+          </div>
           <div class="group-message-received">
             <p>Tester</p>
-            <img src="../statics/img/panda.jpg">
+            <div>ba</div>
+            <div>10:23AM, 20/11/2020</div>
+          </div>
+          <div class="message-received">
+            <div>ba</div>
             <div>10:23AM, 20/11/2020</div>
           </div>
         </div>-->
@@ -219,7 +226,7 @@
         <div id="help" class="help">Help</div>
       </div>
       <div id="setting-content" class="setting-content">
-        <div id="setting-close" class="setting-close"><i class="fas fa-times"></i></div>
+        <div id="setting-close" class="setting-close" title="close"><i class="fas fa-arrow-left"></i></div>
         <div id="user-profile-content" class="user-profile-content"></div>
         <div id="user-account-content" class="user-account-content hide-d">
           <div id="delete-account">Delete account</div>
@@ -229,7 +236,7 @@
         </div>
         <div id="help-content" class="help-content hide-d">
           <div>This is just a demo version and may not be supported anymore in the future!
-            Feel free to fix the problems yourself if you had chatApp sources code.
+            Feel free to fix the problems yourself if you had chatApp source code.
           </div>
         </div>
         <div id="edit-profile-content" class="edit-profile-content hide-d">
@@ -248,7 +255,7 @@
 
 
     <div id="create-group-tab" class="create-group-tab hide-d">
-      <button id="create-group-close" class="setting-close"><i class="fas fa-times"></i></button>
+      <button id="create-group-close" class="setting-close" title="Close"><i class="fas fa-arrow-left"></i></button>
       <p>Create new group</p>
       <div id="create-group-name" class="">
         <div id="group-name-error" class="group-name-error hide-v">Please enter group's name</div>
@@ -277,7 +284,7 @@
         <div id="group-info-other" class="group-info-other">Other</div>
       </div>
       <div id="group-info-tab-content" class="setting-content">
-        <div id="group-info-close" class="setting-close"><i class="fas fa-times"></i></div>
+        <div id="group-info-close" class="setting-close" title="Close"><i class="fas fa-arrow-left"></i></div>
         <div id="group-info-content" class="user-profile-content"></div>
         <div id="group-member-content" class="group-member-content hide-d">
         </div>
@@ -307,7 +314,6 @@
       </div>
     </div>
   </div>
-
   <div id="nav-bar" class="nav-bar">
     <div id="app" class="app">
       <div id="logo" class="logo">

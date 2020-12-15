@@ -168,6 +168,7 @@ request.onupgradeneeded = function(event) {
 const writeToUserInfo = (data) => {
   let request = db.transaction(["userInfo"], "readwrite")
   .objectStore("userInfo");
+  console.log("data: "+data);
 //chua xong
   request.add({email: data.email.replaceAll('.','__'),
                userName: data.userName});
@@ -201,6 +202,7 @@ loginForm.addEventListener('submit', e => {
   openLoading();
   e.preventDefault();
   email = userEmail.value.replaceAll('.','__');
+  console.log(email);
   $.ajax({
        type: "POST",
        url: "https://secret-brook-88276.herokuapp.com/auth",
