@@ -2,6 +2,7 @@
   height: 80px;
   width: 100vw;
   display: grid;
+  background-color: white;
   grid-template-columns: 300px calc(100% - 300px);
   grid-template-areas: 'mot hai';
   -webkit-user-select: none;

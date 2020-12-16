@@ -201,38 +201,47 @@ const displayNewGroupMessage = (data) =>{
   let messageView = document.getElementById(chatId);
 
   if(messageView){
-  let divParent = document.createElement('div');
-  let p = document.createElement('p');
-  let firstChild = document.createElement('div');
-  let lastChild = document.createElement('div');
+    if(data.mesType === messageType.image){
+      let divParent = processImageMessage(data);
+      messageView.appendChild(divParent);
+    }else{
+      let divParent = document.createElement('div');
+      let p = document.createElement('p');
+      let firstChild = document.createElement('div');
+      let lastChild = document.createElement('div');
 
-  divParent.id = data.messageId;
-  if(data.sender === user.email)
-    divParent.classList.add('message-sent');
-  else {
-    divParent.classList.add('group-message-received');
-    if(userGroupMember[data.groupId][data.sender])
-      p.innerHTML = userGroupMember[data.groupId][data.sender];
-    else p.innerHTML = data.sender.replaceAll('__', '.');
-    divParent.appendChild(p);
-  }
-  firstChild.innerHTML = data.message;
-  lastChild.innerHTML = getTime(data.timeStamp);
+      divParent.id = data.messageId;
+      if(data.sender === user.email)
+        divParent.classList.add('message-sent');
+      else {
+        divParent.classList.add('group-message-received');
+        if(userGroupMember[data.groupId][data.sender])
+          p.innerHTML = userGroupMember[data.groupId][data.sender];
+        else p.innerHTML = data.sender.replaceAll('__', '.');
+        divParent.appendChild(p);
+      }
+      firstChild.innerHTML = data.message;
+      lastChild.innerHTML = getTime(data.timeStamp);
 
-  divParent.appendChild(firstChild);
-  divParent.appendChild(lastChild);
+      divParent.appendChild(firstChild);
+      divParent.appendChild(lastChild);
 
-  messageView.appendChild(divParent);
+      messageView.appendChild(divParent);
+    }
   messageView.scrollTop = messageView.scrollHeight;
   if(currentRecipient.chatId === chatId){
+    let divParent = document.getElementById(data.messageId);
     divParent.classList.add('new-arriving-message');
     setTimeout(() => {
       document.getElementById(data.messageId).classList.remove('new-arriving-message');
     },2000);
   }
   }
-  if(currentRecipient.chatId !== chatId)
+  if(currentRecipient.chatId !== chatId){
+    let group = document.getElementById(data.groupId);
+    group.classList.add('new-message');
     showNotiBox('Message','New message from '+user.friends[data.sender]+" in "+user.groups[data.groupId]);
+  }
 }
 
 const displayNewPrivateMessage = (data) =>{
@@ -270,8 +279,11 @@ const displayNewPrivateMessage = (data) =>{
     },2000);
   }
   }
-  if(currentRecipient.chatId !== chatId)
+  if(currentRecipient.chatId !== chatId){
     showNotiBox('Message','New message from '+user.friends[data.sender]);
+    let friend = document.getElementById(data.sender);
+    friend.classList.add('new-message');
+  }
 }
 
 /*const displaySentGroupMessage = (message) =>{

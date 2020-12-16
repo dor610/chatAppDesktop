@@ -75,7 +75,9 @@ const setGroupInfoView = () =>{
       let lastChild = document.createElement('div');
       if(item === 'members')
         lastChild.innerHTML = Object.keys(currentGroup[item]).length;
-      else{
+      else if(item === "admin"){
+        lastChild.innerHTML = currentGroup[item].replaceAll("__",".");
+      }else {
         lastChild.innerHTML = currentGroup[item];
       }
 

@@ -1,6 +1,8 @@
 function setFriendRecipientInfo(){
   let friendEmail = this.id;
 
+  let friend = document.getElementById(friendEmail).classList.remove('new-message');
+
   if(friendEmail.includes('search_'))
     friendEmail = friendEmail.substring(7, friendEmail.length)
   if(friendEmail.includes('recent_'))
@@ -18,6 +20,8 @@ function setFriendRecipientInfo(){
 
 function setGroupRecipientInfo(){
   let groupId = this.id;
+
+  let group = document.getElementById(groupId).classList.remove('new-message');
 
   if(groupId.includes('search_'))
     groupId = groupId.substring(7, groupId.length)

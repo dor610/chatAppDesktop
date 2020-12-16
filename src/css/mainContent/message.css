@@ -72,6 +72,10 @@
   float: right;
 }
 
+.new-message {
+  background-image: linear-gradient(to top, rgba(43, 255, 223, 0.2), transparent);
+}
+
 .group-message-received p {
   color: #024252;
   display: block;
