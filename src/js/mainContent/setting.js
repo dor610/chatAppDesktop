@@ -1,5 +1,7 @@
 settingBtn.addEventListener('click', () =>{
   openSettingTab();
+  closeGroupInfoTab();
+  closeCreateGroupTab();
 }, true);
 
 settingCloseBtn.addEventListener('click', () =>{

@@ -455,6 +455,9 @@ const getGroupMember = () =>{
 //-------------------
 groupsBtn.addEventListener('click', () =>{
   openGroupsTap();
+  closeSettingTab();
+  closeGroupInfoTab();
+  closeCreateGroupTab();
 });
 
 newGroupNameBtn.addEventListener('click', () =>{

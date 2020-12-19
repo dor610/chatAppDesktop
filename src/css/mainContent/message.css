@@ -33,6 +33,7 @@
   min-width: 100px;
   max-width: 80%;
   margin-bottom: 10px;
+  position: relative;
   height: auto;
   float: right;
   clear: both;
@@ -50,6 +51,44 @@
   to {
     transform: scale(1, 1);
   }
+}
+
+.message-sent span {
+  position: absolute;
+  left: -15px;
+  top: 13px;
+  font-size: 22px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.message-received span, .group-message-received span {
+  position: absolute;
+  right: -15px;
+  top: 13px;
+  font-size: 22px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.group-message-received span {
+  top: 30px;
+}
+
+.message-sent:hover span {
+  visibility: visible;
+  opacity: 1;
+  left: -25px;
+  cursor: pointer;
+}
+
+.message-received:hover span, .group-message-received:hover span {
+  visibility: visible;
+  opacity: 1;
+  right: -25px;
+  cursor: pointer;
 }
 
 .message-sent div:first-child {
@@ -106,6 +145,7 @@
   float: left;
   clear: both;
   margin-bottom: 15px;
+  position: relative;
 }
 
 .message-func {

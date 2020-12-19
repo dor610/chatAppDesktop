@@ -91,6 +91,23 @@ button {
   margin-left: 20px;
 }
 
+.contact div i {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 20px;
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.contact div:hover i {
+  right: 10px;
+  visibility: visible;
+  opacity: 1;
+}
+
 .online span {
   display: block;
   width: 8px;

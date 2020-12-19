@@ -1,6 +1,9 @@
 
 notiBtn.addEventListener('click', () =>{
   openNotiTab();
+  closeSettingTab();
+  closeGroupInfoTab();
+  closeCreateGroupTab();
 });
 
 const showNotiBox = (title,message, isSmall, isError) =>{

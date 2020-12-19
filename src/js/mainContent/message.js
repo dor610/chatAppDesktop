@@ -98,6 +98,16 @@ const displayPrivateMessage = (data) =>{
           divParent = document.createElement('div');
           let firstChild = document.createElement('div');
           let lastChild = document.createElement('div');
+          let span = document.createElement('span');
+          let i = document.createElement('i');
+
+          i.classList.add('far');
+          i.classList.add('fa-times-circle');
+          span.appendChild(i);
+          span.id = 'message_'+item.messageId;
+          span.title = 'Delete';
+          span.addEventListener('click', deleteMessage);
+
           divParent.id = item.messageId;
           if(item.sender === user.email){
             //console.log("sender");
@@ -109,8 +119,16 @@ const displayPrivateMessage = (data) =>{
 
           divParent.appendChild(firstChild);
           divParent.appendChild(lastChild);
+          divParent.appendChild(span);
         }
-        messageView.appendChild(divParent);
+
+        if(item.sender === user.sender){
+          if(item.senderState !== messageState.removed)
+            messageView.appendChild(divParent);
+        }else{
+          if(item.recipientState !== messageState.removed)
+          messageView.appendChild(divParent);
+        }
       });
       messageContainer.appendChild(messageView);
       messageView.scrollTop = messageView.scrollHeight;
@@ -138,6 +156,15 @@ const displayPrivateMessage = (data) =>{
 
             let secondChild = document.createElement('div');
             let lastChild = document.createElement('div');
+            let span = document.createElement('span');
+            let i = document.createElement('i');
+
+            i.classList.add('far');
+            i.classList.add('fa-times-circle');
+            span.appendChild(i);
+            span.id = 'message_'+item.messageId;
+            span.title = 'Delete';
+            span.addEventListener('click', deleteMessage);
 
             divParent.id = item.messageId;
             if(item.sender === user.email)
@@ -157,6 +184,7 @@ const displayPrivateMessage = (data) =>{
 
             divParent.appendChild(secondChild);
             divParent.appendChild(lastChild);
+            divParent.appendChild(span);
           }
           if(!item.isRemove[user.email])
             messageView.appendChild(divParent);
@@ -209,6 +237,15 @@ const displayNewGroupMessage = (data) =>{
       let p = document.createElement('p');
       let firstChild = document.createElement('div');
       let lastChild = document.createElement('div');
+      let span = document.createElement('span');
+      let i = document.createElement('i');
+
+      i.classList.add('far');
+      i.classList.add('fa-times-circle');
+      span.appendChild(i);
+      span.id = 'message_'+data.messageId;
+      span.title = 'Delete';
+      span.addEventListener('click', deleteMessage);
 
       divParent.id = data.messageId;
       if(data.sender === user.email)
@@ -225,6 +262,7 @@ const displayNewGroupMessage = (data) =>{
 
       divParent.appendChild(firstChild);
       divParent.appendChild(lastChild);
+      divParent.appendChild(span);
 
       messageView.appendChild(divParent);
     }
@@ -257,6 +295,16 @@ const displayNewPrivateMessage = (data) =>{
     let firstChild = document.createElement('div');
     let lastChild = document.createElement('div');
 
+    let span = document.createElement('span');
+    let i = document.createElement('i');
+
+    i.classList.add('far');
+    i.classList.add('fa-times-circle');
+    span.appendChild(i);
+    span.id = 'message_'+data.messageId;
+    span.title = 'Delete';
+    span.addEventListener('click', deleteMessage);
+
     divParent.id = data.messageId;
     if(data.sender === user.email){
     divParent.classList.add('message-sent');
@@ -269,6 +317,7 @@ const displayNewPrivateMessage = (data) =>{
 
     divParent.appendChild(firstChild);
     divParent.appendChild(lastChild);
+    divParent.appendChild(span);
     messageView.appendChild(divParent);
   }
   messageView.scrollTop = messageView.scrollHeight;
@@ -285,60 +334,6 @@ const displayNewPrivateMessage = (data) =>{
     friend.classList.add('new-message');
   }
 }
-
-/*const displaySentGroupMessage = (message) =>{
-console.log("display sent message");
-  let chatId = 'message_'+currentRecipient.id;
-  let messageView = document.getElementById(chatId);
-  if(!messageView){
-    messageView = document.createElement('div');
-    messageView.id = chatId;
-    messageView.classList.add("message-view");
-    messageContainer.appendChild(messageView);
-  }
-
-  let d = new Date();
-
-  let divParent = document.createElement('div');
-  let firstChild = document.createElement('div');
-  let lastChild = document.createElement('div');
-
-  divParent.classList.add('message-sent');
-  firstChild.innerHTML = message;
-  lastChild.innerHTML = getTime(d.getTime());
-
-  divParent.appendChild(firstChild);
-  divParent.appendChild(lastChild);
-
-  messageView.appendChild(divParent);
-  messageView.scrollTop = messageView.scrollHeight;
-}*/
-
-/*const displaySentPrivateMessage = (message) =>{
-  let chatId = getPrivateChatId(user.email, currentRecipient.id);
-  let messageView = document.getElementById(chatId);
-  if(!messageView){
-    messageView = document.createElement('div');
-    messageView.id = chatId;
-    messageView.classList.add("message-view");
-    messageContainer.appendChild(messageView);
-  }
-  let d = new Date();
-
-  let divParent = document.createElement('div');
-  let firstChild = document.createElement('div');
-  let lastChild = document.createElement('div');
-
-  divParent.classList.add('message-sent');
-  firstChild.innerHTML = message;
-  lastChild.innerHTML = getTime(d.getTime());
-
-  divParent.appendChild(firstChild);
-  divParent.appendChild(lastChild);
-
-  messageView.appendChild(divParent);
-  messageView.scrollTop = messageView.scrollHeight;
-}*/
 
 messageForm.addEventListener('submit', event =>{
   event.preventDefault();
@@ -360,6 +355,15 @@ const processImageMessage = (mes) =>{
   divParent.id = mes.messageId;
   let lastChild = document.createElement('div');
   lastChild.innerHTML = getTime(mes.timeStamp);
+  let span = document.createElement('span');
+  let i = document.createElement('i');
+
+  i.classList.add('far');
+  i.classList.add('fa-times-circle');
+  span.appendChild(i);
+  span.id = 'message_'+mes.messageId;
+  span.title = 'Delete';
+  span.addEventListener('click', deleteMessage);
 
   if(mes.sender === user.email)
     divParent.classList.add('message-sent');
@@ -373,26 +377,9 @@ const processImageMessage = (mes) =>{
   }
   divParent.appendChild(img);
   divParent.appendChild(lastChild);
+  divParent.appendChild(span);
   return divParent;
 }
-
-/*const displaySentImageMessage = (mes) =>{
-  let messageView = document.getElementById(currentRecipient.chatId);
-  if(messageView){
-    let img = document.createElement('img');
-    img.src = mes;
-    let divParent = document.createElement('div');
-    let lastChild = document.createElement('div');
-    let d = new Date();
-    lastChild.innerHTML = getTime(d.getTime());
-
-    divParent.classList.add('message-sent');
-
-    divParent.appendChild(img);
-    divParent.appendChild(lastChild);
-    messageView.appendChild(divParent);
-  }
-}*/
 
 const sendImageMessage = (event) =>{
   event.preventDefault();
@@ -425,6 +412,37 @@ const sendImageMessage = (event) =>{
 
         }
     });
+}
+
+function deleteMessage(){
+  let messageId = this.id.substring(8,this.id.length);
+  showConfirmBox('Message', 'Are you sure you want to delete this message!', () =>{
+    $.ajax({
+      type: 'DELETE',
+      url: 'https://secret-brook-88276.herokuapp.com/app/messages/delete',
+      headers: {email: user.email,
+                messageId: messageId},
+      success: () =>{
+        console.log("message removed!")
+      },
+      error: () =>{
+        console.log("some errors has occurred when deleting message!");
+      }
+    });
+
+    let message = document.getElementById(messageId);
+    let messageView = '';
+    messageView = document.getElementById(currentRecipient.chatId);
+
+    console.log(messageId);
+    console.log(currentRecipient.chatId);
+
+    messageView.removeChild(message);
+    //messageView.scrollTop = messageView.scrollHeight;
+  }, () =>{
+    console.log('cancel');
+  });
+
 }
 
 imageForm.addEventListener("submit", (event) => {

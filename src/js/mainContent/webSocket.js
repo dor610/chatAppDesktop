@@ -31,7 +31,7 @@ function onConnected() {
   stompClient.subscribe('/topic/newMember', data =>{
     let friend = data.body
     console.log(friend);
-    if(onlineUser.indexOf(friend) === -1)
+    if(onlineUser && onlineUser.indexOf(friend) === -1)
       onlineUser.push(friend);
     if(user.friends[friend]){
       setOnlineFriend(friend);

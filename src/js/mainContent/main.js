@@ -163,3 +163,10 @@ const messageType = {
   text: 'Text',
   newGroup: 'NewGroup'
 };
+
+const messageState = {
+  removed: 'REMOVED',
+  received: 'RECEIVED',
+  sent: 'SENT',
+  seen: 'SEEN'
+}

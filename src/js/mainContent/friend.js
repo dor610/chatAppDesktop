@@ -15,6 +15,7 @@ const setUserFriends = () =>{
     divParent.id = item;
     divParent.addEventListener('click', setFriendRecipientInfo);
     divParent.addEventListener('click', getPrivateMessage);
+    //divParent.addEventListener('mouseup', openRightClickMenu);
     let divChild = document.createElement('div');
     divChild.innerHTML = user.friends[item][0].toUpperCase();
     let pChild = document.createElement('p');
@@ -22,9 +23,17 @@ const setUserFriends = () =>{
     let span = document.createElement('span');
     span.title = 'Online';
 
+    let iElement = document.createElement('i');
+    iElement.title = 'Remove';
+    iElement.classList.add('far');
+    iElement.classList.add('fa-times-circle');
+    iElement.id = 'friend_'+item;
+    iElement.addEventListener('click', deleteFriend, false);
+
     divParent.appendChild(divChild);
     divParent.appendChild(span);
     divParent.appendChild(pChild);
+    divParent.appendChild(iElement);
     if(onlineUser.indexOf(item) >= 0){
       divParent.classList.add('online');
       onlineFriend.appendChild(divParent);
@@ -178,25 +187,24 @@ const setRecentChat = () =>{
   friendRecentChats.innerHTML = '';
 
   user.friendRecentChats.forEach((item, i) => {
-    if(item){
-      console.log("from set friend recent chats: "+item);
-      let divParent = document.createElement('div');
-      let firstChild = document.createElement('div');
-      let lastChild = document.createElement('div');
-      let span = document.createElement('span');
-      span.title = 'Online';
+    if(item && user.friends[item]){
+        let divParent = document.createElement('div');
+        let firstChild = document.createElement('div');
+        let lastChild = document.createElement('div');
+        let span = document.createElement('span');
+        span.title = 'Online';
 
-      divParent.id = 'recent_'+item;
-      divParent.addEventListener('click', setFriendRecipientInfo);
-      divParent.addEventListener('click', getPrivateMessage);
-      firstChild.innerHTML = user.friends[item][0].toUpperCase();
-      lastChild.innerHTML = user.friends[item];
-      divParent.appendChild(firstChild);
-      divParent.appendChild(span);
-      divParent.appendChild(lastChild);
-      if(onlineUser.indexOf(item) >= 0)
-        divParent.classList.add('online');
-      friendRecentChats.appendChild(divParent);
+        divParent.id = 'recent_'+item;
+        divParent.addEventListener('click', setFriendRecipientInfo);
+        divParent.addEventListener('click', getPrivateMessage);
+        firstChild.innerHTML = user.friends[item][0].toUpperCase();
+        lastChild.innerHTML = user.friends[item];
+        divParent.appendChild(firstChild);
+        divParent.appendChild(span);
+        divParent.appendChild(lastChild);
+        if(onlineUser.indexOf(item) >= 0)
+          divParent.classList.add('online');
+        friendRecentChats.appendChild(divParent);
     }
   });
 
@@ -217,6 +225,7 @@ const setRecentChat = () =>{
       groupRecentChats.appendChild(divParent);
     }
   });
+}
 
   const getUserFriend = () =>{
 
@@ -249,13 +258,58 @@ const setRecentChat = () =>{
     });
   }
 
+function deleteFriend() {
+  let friendEmail = this.id.substring(7, this.id.length);
+  showConfirmBox("Friend", "Are you sure you want to remove "+ user.friends[friendEmail]+" from your friend list?",
+  () =>{
+    $.ajax({
+      type: "DELETE",
+      url: "https://secret-brook-88276.herokuapp.com/app/friends/remove",
+      headers: {email: user.email,
+                friendEmail: friendEmail},
+      success: () =>{
+        let recentFriend = document.getElementById('recent_'+friendEmail);
+        if(friendRecentChats.contains(recentFriend))
+          friendRecentChats.removeChild(recentFriend);
+
+        if(currentRecipient.id === friendEmail){
+          let messageView = document.getElementById(currentRecipient.chatId);
+          if(messageView){
+            messageContainer.removeChild(messageView);
+          }
+          chatArea.classList.add('hide-d');
+          welcomeBox.classList.remove('hide-d');
+          recipientInfo.classList.add('hide-d');
+        }
+        let friend = document.getElementById(friendEmail);
+        if(onlineFriend.contains(friend))
+          onlineFriend.removeChild(friend);
+        if(offlineFriend.contains(friend))
+          offlineFriend.removeChild(friend);
+      },
+      error: () =>{
+        console.log('Some errors has occurred when removing your friend from friend list!')
+      }
+    });
+  }, () =>{
+    console.log('cancel!')
+  });
 }
+
+/*const openRightClickMenu = (e) =>{
+  if(typeof e === 'object')
+    if(e.button === 2)
+      alert("right click menu here!!!!");
+}*/
 
 
 //---------------------
 
 friendsBtn.addEventListener('click', () =>{
   openFriendsTab();
+  closeSettingTab();
+  closeGroupInfoTab();
+  closeCreateGroupTab();
 });
 
 friendRequestBtn.addEventListener('click', () =>{
