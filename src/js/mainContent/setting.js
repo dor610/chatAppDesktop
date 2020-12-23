@@ -169,7 +169,7 @@ editForm.addEventListener('submit', e =>{
   showConfirmBox("Edit User's Profile","Save changes?", () =>{
     $.ajax({
       type: "PUT",
-      url: "https://secret-brook-88276.herokuapp.com/app/users/edit",
+      url: url+"app/users/edit",
       headers: {email: email},
       data: $('#edit-form').serialize(),
       success: () =>{
@@ -203,7 +203,7 @@ deleteAccountBtn.addEventListener('click', () =>{
   showConfirmBox("Delete Account","Are you sure you want to delete your account?", () =>{
     $.ajax({
       type: "DELETE",
-      url: "https://secret-brook-88276.herokuapp.com/app/users/delete",
+      url: url+"app/users/delete",
       headers: {email: user.email},
       success: () =>{
         showNotiBox("Account","Your account has been deleted!", true);
@@ -227,7 +227,7 @@ const logout = () =>{
 
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/logout",
+    url: url+"logout",
     headers: {logout: "cry"},
     success: () =>{
       console.log("succeed");

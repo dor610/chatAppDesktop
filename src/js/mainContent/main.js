@@ -1,3 +1,4 @@
+const url = "https://chatapp-kkt.herokuapp.com/";
 //navigation bar
 const friendsBtn = document.getElementById('friends');
 const groupsBtn = document.getElementById('groups');

@@ -2,6 +2,7 @@
   grid-area: hai;
   height: calc(100vh - 150px);
   width: 100%;
+  z-index: 0;
 }
 
 .message-view-container {
@@ -18,6 +19,7 @@
   bottom: 0;
   overflow: scroll;
   padding: 10px;
+  margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -103,6 +105,7 @@
 
 .message-view div img:first-child {
   display: block;
+  width: 90%;
 }
 
 .message-sent div:last-child {
@@ -131,6 +134,7 @@
 
 .group-message-received img:nth-child(2) {
   display: block;
+  width: 90%;
 }
 
 .message-received div:last-child, .group-message-received div:last-child {

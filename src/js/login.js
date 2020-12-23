@@ -29,6 +29,8 @@ const password = document.getElementById('password');
 
 const newEmail = document.getElementById('new-email');
 
+const url = "https://chatapp-kkt.herokuapp.com/";
+
 let email = '';
 let pageType = type.innerHTML;
 
@@ -189,7 +191,7 @@ const writeToUserInfo = (data) => {
 const getUserInfo = () =>{
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/users/"+email,
+    url: url+"users/"+email,
     xhrFields: {
       withCredentials: true
     },
@@ -207,7 +209,7 @@ loginForm.addEventListener('submit', e => {
   console.log(email);
   $.ajax({
        type: "POST",
-       url: "https://secret-brook-88276.herokuapp.com/auth",
+       url: url+"auth",
        data: "email="+email+"&password="+password.value,
        xhrFields: {
          withCredentials: true
@@ -230,7 +232,7 @@ signupForm.addEventListener('submit', e => {
 
   $.ajax({
     type: "POST",
-    url: "https://secret-brook-88276.herokuapp.com/signup",
+    url: url+"signup",
     data: $('#signup-form').serialize(),
     success: function() {
       closeLoading();

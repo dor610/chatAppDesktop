@@ -77,7 +77,7 @@ searchButton.addEventListener('click', () =>{
   if(!user.friends[keyWord]){
     $.ajax({
       type: "GET",
-      url: "https://secret-brook-88276.herokuapp.com/users/"+keyWord,
+      url: url+"users/"+keyWord,
       success: (data) =>{
         console.log('success');
         newFriend.innerHTML = '';

@@ -100,7 +100,7 @@ const getUserInfo = () =>{
   console.log('email before sending: '+email);
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/users/"+email,
+    url: url+"users/"+email,
     xhrFields: {
       withCredentials: true
     },

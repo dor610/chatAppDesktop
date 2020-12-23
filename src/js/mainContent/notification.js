@@ -52,7 +52,7 @@ const getNotification = () =>{
 
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/app/users/notification",
+    url: url+"app/users/notification",
     headers: {email: user.email},
     success: data =>{
       setNotification(data);

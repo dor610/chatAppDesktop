@@ -22,7 +22,7 @@ function getGroupMessage(){
   if(!chatBox){
     $.ajax({
       type: "GET",
-      url: "https://secret-brook-88276.herokuapp.com/app/groups/messages",
+      url: url+"app/groups/messages",
       headers: {email: user.email,
                 groupId: groupId},
       success: (data) =>{
@@ -56,7 +56,7 @@ function getPrivateMessage(){
   if(!chatBox){
     $.ajax({
       type: "GET",
-      url: "https://secret-brook-88276.herokuapp.com/app/users/messages",
+      url: url+"app/users/messages",
       headers: {email: user.email,
                 chatId: chatId},
       success: (data) =>{
@@ -175,7 +175,7 @@ const displayPrivateMessage = (data) =>{
               //console.log(item.groupId+"-----"+item.sender);
               if(userGroupMember[item.groupId][item.sender])
                 firstChild.innerHTML = userGroupMember[item.groupId][item.sender];
-              else firstChild.innerHTML = data.sender.replaceAll('__', '.');
+              else firstChild.innerHTML = item.sender.replaceAll('__', '.');
               divParent.appendChild(firstChild);
             }
             secondChild.innerHTML = item.message;
@@ -371,7 +371,9 @@ const processImageMessage = (mes) =>{
     if(currentRecipient.isGroup){
       divParent.classList.add('group-message-received');
       let p = document.createElement('p');
-      p.innerHTML = mes.sender;
+      if(userGroupMember[mes.groupId][mes.sender])
+        p.innerHTML = userGroupMember[mes.groupId][mes.sender];
+      else p.innerHTML = mes.sender.replaceAll('__', '.');
       divParent.appendChild(p);
     }else divParent.classList.add('message-received');
   }
@@ -395,7 +397,7 @@ const sendImageMessage = (event) =>{
   $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "https://secret-brook-88276.herokuapp.com/messages/img",
+        url: url+"messages/img",
         data: data,
 
         // prevent jQuery from automatically transforming the data into a query string
@@ -419,7 +421,7 @@ function deleteMessage(){
   showConfirmBox('Message', 'Are you sure you want to delete this message!', () =>{
     $.ajax({
       type: 'DELETE',
-      url: 'https://secret-brook-88276.herokuapp.com/app/messages/delete',
+      url: url+'app/messages/delete',
       headers: {email: user.email,
                 messageId: messageId},
       success: () =>{

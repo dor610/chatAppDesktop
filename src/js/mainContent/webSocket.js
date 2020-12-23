@@ -2,7 +2,7 @@ let stompClient = null;
 
 const connect = ()  => {
 
-    var socket = new SockJS('https://secret-brook-88276.herokuapp.com/websocket-chat');
+    var socket = new SockJS(url+'websocket-chat');
     stompClient = Stomp.over(socket);
 
     stompClient.connect({}, onConnected, onError);

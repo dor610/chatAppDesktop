@@ -3,6 +3,8 @@ const logo = document.getElementById('logo');
 const homeBtn = document.getElementById('home');
 const welcomeBtn = document.getElementById('welcome');
 
+const url = "https://chatapp-kkt.herokuapp.com/";
+
 let db;
 let request = window.indexedDB.open("chatapp", 1);
 
@@ -37,32 +39,48 @@ const readUserInfor = () =>{
        let distance = parseInt(timeStamp) - parseInt(oldTimeStamp);
        console.log("distance: "+distance);
        if(distance - 1.9*24*60*60*1000> 1*60*60*1000){
-         welcomeBtn.click();
-        //homeBtn.click();
+         setTimeout(() =>{
+           welcomeBtn.click();
+         }, 5000);
       } else {
-       /*console.log(cursor);*/
         homeBtn.click();
         }
-    }else  welcomeBtn.click();
+    }else {
+      setTimeout(() =>{
+        welcomeBtn.click();
+      }, 5000);
+    }
   }
 }
 
 document.onreadystatechange = function() {
-    if (document.readyState !== "complete") {
-    } else {
-      logo.classList.add('logo-animate');
-      setTimeout(() => {
-        logo.classList.add('logo-color');
-      }, 1400);
-      setTimeout(() => {
-        name.classList.add('name-animate');
-      },2100);
-      setTimeout(() => {
-        name.classList.add('name-color');
-        name.classList.add('slide-up');
-      }, 3500);
-    }
-    setTimeout(() => {
+    startServer();
+    setTimeout(()=>{
       readUserInfor();
-    }, 5000);
+    },1000);
+    setTimeout(()=>{
+      if (document.readyState === "complete") {
+        logo.classList.add('logo-animate');
+        setTimeout(() => {
+          logo.classList.add('logo-color');
+        }, 1400);
+        setTimeout(() => {
+          name.classList.add('name-animate');
+        },2100);
+        setTimeout(() => {
+          name.classList.add('name-color');
+          name.classList.add('slide-up');
+        }, 3500);
+      }
+    },1000);
+
 };
+
+const startServer = () =>{
+  $.ajax({
+    type: "GET",
+    url: url+"start",
+    success: (data) => console.log(data),
+    error: () => console.log("Please check your connection!")
+  })
+}

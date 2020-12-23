@@ -166,7 +166,7 @@ function removeGroupMember() {
                   ()=>{
                     $.ajax({
                       type: "DELETE",
-                      url: 'https://secret-brook-88276.herokuapp.com/app/groups/delete/members',
+                      url: url+'app/groups/delete/members',
                       headers: {email: user.email},
                       data: 'groupId='+currentGroup.groupId+"&member="+currentGroup.removedMember,
                       success: () =>{
@@ -184,7 +184,7 @@ function removeGroupMember() {
 const loadGroupInfo = () =>{
   $.ajax({
     type: "GET",
-    url: 'https://secret-brook-88276.herokuapp.com/groups/profile/'+currentGroup.groupId,
+    url: url+'groups/profile/'+currentGroup.groupId,
     success: (data) =>{
       currentGroup.groupName = data.groupName;
       currentGroup.members = data.members;
@@ -197,7 +197,7 @@ const loadGroupInfo = () =>{
 const loadGroupMember = () => {
   $.ajax({
     type: "GET",
-    url: 'https://secret-brook-88276.herokuapp.com/groups/members/'+currentGroup.groupId,
+    url: url+'groups/members/'+currentGroup.groupId,
     success: (data) =>{
       currentGroup.members = data;
       setGroupMember();
@@ -319,7 +319,7 @@ const createGroup = () =>{
   }else newGroupMember = "NONE";
     $.ajax({
       type: "POST",
-      url: "https://secret-brook-88276.herokuapp.com/app/groups/create",
+      url: url+"app/groups/create",
       headers: {email: user.email},
       data: "newGroupName="+newGroupName+"&members="+newGroupMember,
       success: (data) => {
@@ -347,7 +347,7 @@ const addNewMembers = () =>{
   console.log(newMembers);
   $.ajax({
     type: "POST",
-    url: 'https://secret-brook-88276.herokuapp.com/app/groups/add',
+    url: url+'groups/add',
     headers: {email: user.email},
     data: 'groupId='+currentGroup.groupId+'&newMembers='+newMembers,
     success: (data) =>{
@@ -361,7 +361,7 @@ const addNewMembers = () =>{
 const loadUserGroup = () =>{
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/app/groups",
+    url: url+"app/groups",
     headers: {email: user.email},
     success: (data) =>{
       user.groups = data;
@@ -371,11 +371,11 @@ const loadUserGroup = () =>{
 }
 
 const leaveGroup = () =>{
-  showConfirmBox("Leave Group","Are you sure you want to leave "+currentGroup.groupName+"?",
+  showConfirmBox("Leave Group","Are you sure you want to leave?"+currentGroup.groupName+"?",
                 ()=>{
                   $.ajax({
                     type: "POST",
-                    url: 'https://secret-brook-88276.herokuapp.com/app/groups/leave',
+                    url: url+'app/groups/leave',
                     headers: {email: user.email},
                     data: 'groupId='+currentGroup.groupId,
                     success: (data) =>{
@@ -398,7 +398,7 @@ const deleteGroup = () =>{
                   () =>{
                     $.ajax({
                       type: "DELETE",
-                      url: 'https://secret-brook-88276.herokuapp.com/app/groups/delete',
+                      url: url+'app/groups/delete',
                       headers: {email: user.email},
                       data: 'groupId='+currentGroup.groupId,
                       success: (data) =>{
@@ -421,7 +421,7 @@ const deleteGroup = () =>{
 const getGroup = () =>{
   $.ajax({
     type: 'GET',
-    url: 'https://secret-brook-88276.herokuapp.com/app/groups',
+    url: url+'app/groups',
     headers: {email: user.email},
     success: (data) =>{
       user.groups = data;
@@ -439,7 +439,7 @@ const getGroupMember = () =>{
   groupIds.forEach((item, i) => {
     $.ajax({
       type: "GET",
-      url: 'https://secret-brook-88276.herokuapp.com/groups/members/'+item,
+      url: url+'groups/members/'+item,
       success: (data) =>{
         //console.log(item);
         userGroupMember[item] = data;

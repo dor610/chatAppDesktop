@@ -119,7 +119,7 @@ function acceptFriendRequest() {
 
   $.ajax({
     type: "POST",
-    url: "https://secret-brook-88276.herokuapp.com/app/friends/accept",
+    url: url+"app/friends/accept",
     headers:{email: user.email},
     data: "friendEmail="+friendEmail,
     success: () =>{
@@ -141,7 +141,7 @@ function removeFriendRequest() {
 
   $.ajax({
     type: "POST",
-    url: "https://secret-brook-88276.herokuapp.com/app/friends/accept",
+    url: url+"app/friends/accept",
     headers:{email: user.email},
     data: "friendEmail="+friendEmail,
     success: () =>{
@@ -157,7 +157,7 @@ const loadUserFriend = () =>{
 
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/app/friends",
+    url: url+"app/friends",
     headers: {email: user.email},
     success: (data) =>{
       user.friends = data;
@@ -170,7 +170,7 @@ const loadUserFriendRequest = () =>{
 
   $.ajax({
     type: "GET",
-    url: "https://secret-brook-88276.herokuapp.com/app/friends/received",
+    url: url+"app/friends/received",
     headers: {email: user.email},
     success: data =>{
       user.receivedFriendRequest = data;
@@ -231,7 +231,7 @@ const setRecentChat = () =>{
 
     $.ajax({
       type: "GET",
-      url: "https://secret-brook-88276.herokuapp.com/app/friends",
+      url: url+"app/friends",
       headers: {email: user.email},
       success: (data) =>{
         user.friends = data;
@@ -246,7 +246,7 @@ const setRecentChat = () =>{
   const getFriendRequest = () =>{
     $.ajax({
       type: "GET",
-      url: "https://secret-brook-88276.herokuapp.com/app/friends/received",
+      url: url+"app/friends/received",
       headers: {email: user.email},
       success: (data) =>{
         user.receivedFriendRequest = data;
@@ -264,7 +264,7 @@ function deleteFriend() {
   () =>{
     $.ajax({
       type: "DELETE",
-      url: "https://secret-brook-88276.herokuapp.com/app/friends/remove",
+      url: url+"app/friends/remove",
       headers: {email: user.email,
                 friendEmail: friendEmail},
       success: () =>{
